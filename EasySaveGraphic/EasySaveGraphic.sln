@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySaveGraphic", "EasySaveGraphic.csproj", "{951DBEC6-39CC-4B1E-BF84-17FA18EDB551}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{951DBEC6-39CC-4B1E-BF84-17FA18EDB551}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{951DBEC6-39CC-4B1E-BF84-17FA18EDB551}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{951DBEC6-39CC-4B1E-BF84-17FA18EDB551}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{951DBEC6-39CC-4B1E-BF84-17FA18EDB551}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {910B4898-4D64-4BDF-8990-6B9B5D8560C6}
+	EndGlobalSection
+EndGlobal
