@@ -14,16 +14,26 @@ using System.Windows.Shapes;
 namespace EasySaveGraphic
 {
     /// <summary>
-    /// Logique d'interaction pour Mainwindow.xaml
+    /// Logique d'interaction pour Execute.xaml
     /// </summary>
-    public partial class Mainwindow : Page
+    public partial class Execute : Page
     {
-        public Mainwindow()
+        public Execute()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void uniqueExec_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void sequentialExec_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

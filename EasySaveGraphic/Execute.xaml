@@ -1,0 +1,27 @@
+﻿<Page x:Class="EasySaveGraphic.Execute"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:EasySaveGraphic"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Execute">
+
+    <Grid>
+        <Grid Background="#FF276BB7">
+            <Button x:Name="sequentialExec" HorizontalAlignment="Left" Margin="509,341,0,0" VerticalAlignment="Top" Height="51" Width="254" Click="sequentialExec_Click"  FontSize="15" Background="#FF1D84F7" Foreground="White" Content="Execution sequentielle"/>
+            <Button x:Name="uniqueExec" HorizontalAlignment="Left" Margin="509,267,0,0" VerticalAlignment="Top" Width="254" Height="50" Click="uniqueExec_Click"  FontSize="15" Background="#FF1D84F7" Foreground="#FFFAFAFA" Content="Executer un travail de sauvegarde"/>
+            <TextBox x:Name="index" HorizontalAlignment="Left" Margin="289,316,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="58" Height="50" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" Background="#FFDFDFDF" BorderBrush="#FF1D84F7" BorderThickness="2" Foreground="White" />
+            <Label x:Name="rowLabel" HorizontalAlignment="Left" Margin="53,326,0,0" VerticalAlignment="Top" Height="30" FontSize="15" Foreground="White" Content="Ligne du travail de sauvegarde " Background="#FF1D84F7"/>
+            <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="120,10,164,215">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="source" Binding="{Binding Source}" />
+                    <DataGridTextColumn Header="Destination" Binding="{Binding Destination}" />
+                    <DataGridTextColumn Header="type" Binding="{Binding Type}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Page>

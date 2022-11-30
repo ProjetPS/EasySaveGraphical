@@ -14,16 +14,26 @@ using System.Windows.Shapes;
 namespace EasySaveGraphic
 {
     /// <summary>
-    /// Logique d'interaction pour Mainwindow.xaml
+    /// Logique d'interaction pour addwork.xaml
     /// </summary>
-    public partial class Mainwindow : Page
+    public partial class addwork : Page
     {
-        public Mainwindow()
+        public addwork()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void uploadSource_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
         {
 
         }
