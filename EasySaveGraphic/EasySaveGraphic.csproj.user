@@ -13,7 +13,13 @@
     <Compile Update="Execute.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MainPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Mainwindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WorkSaveList.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="settings.xaml.cs">
@@ -27,7 +33,13 @@
     <Page Update="Execute.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="MainPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Mainwindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WorkSaveList.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Settings.xaml">

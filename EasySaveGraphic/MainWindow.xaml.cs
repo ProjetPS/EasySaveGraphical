@@ -20,41 +20,10 @@ namespace EasySaveGraphic
     {
         public Mainwindow()
         {
+            //Process to pages immediately
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void FR_Lang(object sender, MouseButtonEventArgs e)
-        {
-            saveList_btn.Content = "Mes travaux de sauvegarde";
-            createWS_btn.Content = "Créer un nouveau travail de sauvegarde";
-            executeWS_btn.Content = "Éxecuter un travail de sauvegarde";
-        }
-
-        private void EN_Lang(object sender, MouseButtonEventArgs e)
-        {
-            saveList_btn.Content = "My worksave list";
-            createWS_btn.Content = "Create a new worksave";
-            executeWS_btn.Content = "Execute a worksave";
-        }
-
-        private void WorkSaveList(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void CreateWorkSave(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ExecuteWS_Click(object sender, RoutedEventArgs e)
-        {
-
+            MainPage gotoPages = new MainPage();
+            this.Content = gotoPages;
         }
     }
 }

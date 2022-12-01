@@ -7,10 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="add.png" />
     <None Remove="Easy %281%29.png" />
     <None Remove="EN_flag.png" />
     <None Remove="FR_flag.png" />
+    <None Remove="Images\add.png" />
     <None Remove="Images\EasySave.ico" />
+    <None Remove="Images\list.png" />
+    <None Remove="list.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,10 +22,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="add.png" />
     <Resource Include="Easy (1).png" />
     <Resource Include="EN_flag.png" />
     <Resource Include="FR_flag.png" />
+    <Resource Include="Images\add.png" />
     <Resource Include="Images\EasySave.ico" />
+    <Resource Include="Images\list.png" />
+    <Resource Include="list.png" />
   </ItemGroup>
 
 </Project>
