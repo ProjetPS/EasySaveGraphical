@@ -8,10 +8,10 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Mainwindow">
 
-    <Grid Background="#FF00B5FB">
-        <Button Content="Executer un travail" HorizontalAlignment="Left" Margin="476,178,0,0" VerticalAlignment="Top" Height="206" Width="284" Background="#FF2CB0FE" Foreground="White"/>
-        <Button Content="Ajouter un travail" HorizontalAlignment="Left" Margin="34,178,0,0" VerticalAlignment="Top" Height="206" Width="297" Click="Button_Click" Background="#FF1AB8FF" Foreground="White"/>
-        <Button Content="Reglages" HorizontalAlignment="Left" Margin="681,32,0,0" VerticalAlignment="Top" Height="35" Width="79" Background="#FF034A87" Foreground="White"/>
-        <Image Margin="182,10,182,309" Source="/Easy (1).png"/>
+    <Grid Background="#FF00B5FB" RenderTransformOrigin="0.545,0.801">
+        <Button Content="Executer un travail" HorizontalAlignment="Left" Margin="342,178,0,0" VerticalAlignment="Top" Height="206" Width="194" Background="#FF2CB0FE" Foreground="White" RenderTransformOrigin="0.464,1.214"/>
+        <Button Content="Ajouter un travail" HorizontalAlignment="Left" Margin="44,178,0,0" VerticalAlignment="Top" Height="206" Width="206" Click="Button_Click" Background="#FF1AB8FF" Foreground="White" RenderTransformOrigin="0.511,1.149"/>
+        <Button Content="settings" HorizontalAlignment="Left" Margin="662,54,0,0" VerticalAlignment="Top" Height="35" Width="79" Background="#FF034A87" Foreground="White" RenderTransformOrigin="1.017,4.952"/>
+        <Image Margin="170,0,311,374" Source="/Easy (1).png" RenderTransformOrigin="0.487,0.044"/>
     </Grid>
 </Page>

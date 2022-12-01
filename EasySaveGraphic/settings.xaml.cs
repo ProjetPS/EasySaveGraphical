@@ -23,9 +23,15 @@ namespace EasySaveGraphic
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        internal void Show(settings settings)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Button_Click(object sender, EventArgs e)
         {
 
         }
+            
     }
 }
