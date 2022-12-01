@@ -9,22 +9,28 @@
 
     <Grid Background="#FF00837B" Margin="70,0,0,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="19*"/>
-            <RowDefinition Height="78*"/>
+            <RowDefinition Height="76*"/>
+            <RowDefinition Height="53*"/>
+            <RowDefinition Height="32*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="91*"/>
+            <RowDefinition Height="66*"/>
         </Grid.RowDefinitions>
         <Label Content="Nom" HorizontalAlignment="Left" Margin="85,75,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
-        <Label Content="Chemin source" HorizontalAlignment="Left" Margin="85,45,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-        <Label Content="Chemin destination" HorizontalAlignment="Left" Margin="85,94,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-        <Label Content="Type" HorizontalAlignment="Left" Margin="85,149,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-        <ComboBox HorizontalAlignment="Center" Margin="0,153,0,0" VerticalAlignment="Top" Width="268" Grid.Row="1">
+        <Label Content="Chemin source" HorizontalAlignment="Left" Margin="85,45,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.RowSpan="2"/>
+        <Label Content="Chemin destination" HorizontalAlignment="Left" Margin="85,9,0,0" VerticalAlignment="Top" Grid.Row="3"/>
+        <Label Content="Type" HorizontalAlignment="Left" Margin="85,64,0,0" VerticalAlignment="Top" Grid.Row="3" Grid.RowSpan="2"/>
+        <ComboBox HorizontalAlignment="Left" Margin="220,66,0,0" VerticalAlignment="Top" Width="268" Grid.Row="3" Grid.RowSpan="2">
             <Label Content="FullSave"/>
             <Label Content="DifferentielSave"/>
         </ComboBox>
-        <TextBox HorizontalAlignment="Left" Margin="259,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Grid.Row="1"/>
-        <TextBox HorizontalAlignment="Left" Margin="259,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" TextChanged="TextBox_TextChanged" Grid.Row="1"/>
-        <TextBox HorizontalAlignment="Left" Margin="259,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" TextChanged="TextBox_TextChanged_1" Grid.RowSpan="2" RenderTransformOrigin="-0.163,0.585"/>
-        <Button Content="Ajouter" HorizontalAlignment="Left" Margin="516,242,0,0" VerticalAlignment="Top" Background="#FF001AC4" Width="85" Height="32" Grid.Row="1"/>
+        <TextBox HorizontalAlignment="Left" Margin="220,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Grid.Row="1" Grid.RowSpan="2"/>
+        <TextBox HorizontalAlignment="Left" Margin="220,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" TextChanged="TextBox_TextChanged" Grid.Row="3"/>
+        <TextBox HorizontalAlignment="Left" Margin="220,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" TextChanged="TextBox_TextChanged_1" Grid.RowSpan="2" RenderTransformOrigin="-0.163,0.585"/>
+        <Button Content="Ajouter" HorizontalAlignment="Left" Margin="516,87,0,0" VerticalAlignment="Top" Background="#FF001AC4" Width="85" Height="32" Grid.Row="4" Grid.RowSpan="2"/>
         <Label Content="EasySave" HorizontalAlignment="Left" Margin="259,0,0,0" VerticalAlignment="Center" FontSize="28" FontWeight="Bold" Height="64" Width="137"/>
+        <Button Content="Uploadsource" HorizontalAlignment="Left" Margin="516,0,0,15" Grid.Row="1" VerticalAlignment="Bottom" Grid.RowSpan="2"/>
+        <Button Content="Uploaddestination" HorizontalAlignment="Left" Margin="516,13,0,0" Grid.Row="3" VerticalAlignment="Top" Height="20"/>
 
 
 

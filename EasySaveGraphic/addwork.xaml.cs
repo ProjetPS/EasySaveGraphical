@@ -20,7 +20,7 @@ namespace EasySaveGraphic
     {
         public addwork()
         {
-            InitializeComponent();
+            
         }
 
         private void uploadSource_Click(object sender, RoutedEventArgs e)
