@@ -21,7 +21,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="addwork.xaml">
+    <Page Update="Addwork.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Execute.xaml">
@@ -30,7 +30,7 @@
     <Page Update="Mainwindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="settings.xaml">
+    <Page Update="Settings.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

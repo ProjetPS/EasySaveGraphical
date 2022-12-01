@@ -23,12 +23,12 @@ namespace EasySaveGraphic
             InitializeComponent();
         }
 
-        private void uniqueExec_Click(object sender, RoutedEventArgs e)
+        private void UniqueExec_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void sequentialExec_Click(object sender, RoutedEventArgs e)
+        private void SequentialExec_Click(object sender, RoutedEventArgs e)
         {
 
         }

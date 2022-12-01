@@ -16,14 +16,14 @@ namespace EasySaveGraphic
     /// <summary>
     /// Logique d'interaction pour addwork.xaml
     /// </summary>
-    public partial class addwork : Page
+    public partial class Addwork : Page
     {
-        public addwork()
+        public Addwork()
         {
             InitializeComponent();
         }
 
-        private void uploadSource_Click(object sender, RoutedEventArgs e)
+        private void UploadSource_Click(object sender, RoutedEventArgs e)
         {
 
         }

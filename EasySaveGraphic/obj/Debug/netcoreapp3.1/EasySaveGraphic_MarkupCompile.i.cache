@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\vince\source\repos\ProjetPS\EasySaveGraphical\EasySaveGraphic\obj\Debug\netcoreapp3.1\
+C:\Users\Maxence\Source\Repos\EasySave2\EasySaveGraphic\obj\Debug\netcoreapp3.1\
 EasySaveGraphic
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
-C:\Users\vince\source\repos\ProjetPS\EasySaveGraphical\EasySaveGraphic\App.xaml
-11407045341
+C:\Users\Maxence\Source\Repos\EasySave2\EasySaveGraphic\App.xaml
+42005389046
 
-51196027806
+8871929957
 192-1533232326
-MainWindow.xaml;
+Addwork.xaml;Execute.xaml;MainWindow.xaml;Settings.xaml;
 
 False
 

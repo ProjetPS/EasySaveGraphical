@@ -16,7 +16,7 @@ namespace EasySaveGraphic
     /// <summary>
     /// Logique d'interaction pour Mainwindow.xaml
     /// </summary>
-    public partial class Mainwindow : Page
+    public partial class Mainwindow : Window
     {
         public Mainwindow()
         {
@@ -24,6 +24,35 @@ namespace EasySaveGraphic
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void FR_Lang(object sender, MouseButtonEventArgs e)
+        {
+            saveList_btn.Content = "Mes travaux de sauvegarde";
+            createWS_btn.Content = "Créer un nouveau travail de sauvegarde";
+            executeWS_btn.Content = "Éxecuter un travail de sauvegarde";
+        }
+
+        private void EN_Lang(object sender, MouseButtonEventArgs e)
+        {
+            saveList_btn.Content = "My worksave list";
+            createWS_btn.Content = "Create a new worksave";
+            executeWS_btn.Content = "Execute a worksave";
+        }
+
+        private void WorkSaveList(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CreateWorkSave(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ExecuteWS_Click(object sender, RoutedEventArgs e)
         {
 
         }

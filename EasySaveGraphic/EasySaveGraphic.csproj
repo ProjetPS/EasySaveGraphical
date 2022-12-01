@@ -8,6 +8,9 @@
 
   <ItemGroup>
     <None Remove="Easy %281%29.png" />
+    <None Remove="EN_flag.png" />
+    <None Remove="FR_flag.png" />
+    <None Remove="Images\EasySave.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +19,9 @@
 
   <ItemGroup>
     <Resource Include="Easy (1).png" />
+    <Resource Include="EN_flag.png" />
+    <Resource Include="FR_flag.png" />
+    <Resource Include="Images\EasySave.ico" />
   </ItemGroup>
 
 </Project>
