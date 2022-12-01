@@ -13,5 +13,6 @@ namespace EasySaveGraphic
     /// </summary>
     public partial class App : Application
     {
+
     }
 }

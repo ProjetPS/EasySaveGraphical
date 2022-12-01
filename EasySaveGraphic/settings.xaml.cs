@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace EasySaveGraphic
 {
     /// <summary>
-    /// Logique d'interaction pour Mainwindow.xaml
+    /// Logique d'interaction pour settings.xaml
     /// </summary>
-    public partial class Mainwindow : Page
+    public partial class settings : Page
     {
-        public Mainwindow()
+        public settings()
         {
             InitializeComponent();
         }
