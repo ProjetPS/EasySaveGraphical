@@ -19,7 +19,7 @@ namespace EasySaveGraphic
     
     public partial class MainPage : Page
     {
-        private readonly double opacity = 0.2;
+        private readonly double opacity = 0.25;
         private bool isLangFR = false;
         public MainPage()
         {
@@ -43,6 +43,7 @@ namespace EasySaveGraphic
             saveList_btn.Content = "Mes travaux de sauvegarde";
             createWS_btn.Content = "Créer un nouveau travail de sauvegarde";
             executeWS_btn.Content = "Éxecuter un travail de sauvegarde";
+            Application.Current.MainWindow.Title = "EasySave - Menu principal";
             FR_btn.Opacity = opacity;
             EN_btn.Opacity = 1;
             this.isLangFR = true;
@@ -54,6 +55,7 @@ namespace EasySaveGraphic
             saveList_btn.Content = "My worksave list";
             createWS_btn.Content = "Create a new worksave";
             executeWS_btn.Content = "Execute a worksave";
+            Application.Current.MainWindow.Title = "EasySave - Main menu";
             EN_btn.Opacity = opacity;
             FR_btn.Opacity = 1;
             this.isLangFR = false;
@@ -65,6 +67,16 @@ namespace EasySaveGraphic
             var window = (Mainwindow)Application.Current.MainWindow;
 
             WorkSaveList goToWSL = new WorkSaveList(isLangFR);
+
+            // Change window title in appropriate language
+            if (this.isLangFR)
+            {
+                window.Title = "EasySave - Liste des travaux de sauvegarde";
+            }
+            else
+            {
+                window.Title = "EasySave - Worksave list";
+            }
             window.Content = goToWSL;
         }
 

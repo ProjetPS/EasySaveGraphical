@@ -40,17 +40,21 @@ namespace EasySaveGraphic
             {
                 //Go back in FR language
                 MainPage goBack = new MainPage(true);
+                window.Title = "EasySave - Menu principal";
                 window.Content = goBack;
+                
             }else
             {
                 //Go back in EN language
                 MainPage goBack = new MainPage();
+                window.Title = "EasySave - Main menu";
                 window.Content = goBack;
             }
             
            
         }
 
+        //Change all content displayed in FR
         private void ChangetoFR()
         {
             goback_btn.Content = "Retour";

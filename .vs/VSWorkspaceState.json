@@ -1,10 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\EasySaveGraphic",
-    "\\EasySaveGraphic\\obj",
-    "\\EasySaveGraphic\\obj\\Release\\netcoreapp3.1"
+    "\\EasySaveGraphic"
   ],
-  "SelectedNode": "\\EasySaveGraphic\\Addwork.xaml",
+  "SelectedNode": "\\EasySaveGraphic\\EasySaveGraphic.sln",
   "PreviewInSolutionExplorer": false
 }

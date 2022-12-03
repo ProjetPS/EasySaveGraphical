@@ -28,3 +28,4 @@ C:\Users\Maxence\Source\Repos\EasySave2\EasySaveGraphic\obj\Debug\netcoreapp3.1\
 C:\Users\Maxence\Source\Repos\EasySave2\EasySaveGraphic\obj\Debug\netcoreapp3.1\WorkSaveList.baml
 C:\Users\Maxence\Source\Repos\EasySave2\EasySaveGraphic\obj\Debug\netcoreapp3.1\MainPage.g.cs
 C:\Users\Maxence\Source\Repos\EasySave2\EasySaveGraphic\obj\Debug\netcoreapp3.1\MainPage.baml
+C:\Users\Maxence\Source\Repos\EasySave2\EasySaveGraphic\obj\Debug\netcoreapp3.1\App.baml
