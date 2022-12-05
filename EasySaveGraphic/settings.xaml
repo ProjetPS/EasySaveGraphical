@@ -8,25 +8,37 @@
       d:DesignHeight="450" d:DesignWidth="776"
       Title="settings">
 
-    <Grid Background="#FF393939" Margin="238,10,280,10">
+    <Grid Background="#E8DFCA" Margin="0,0,0,-6">
         <Grid.RowDefinitions>
             <RowDefinition Height="203*"/>
             <RowDefinition Height="227*"/>
         </Grid.RowDefinitions>
-        <ComboBox HorizontalAlignment="Center" Margin="0,153,0,0" VerticalAlignment="Top" Width="120">
-            <ComboBox.Background>
-                <LinearGradientBrush EndPoint="0,1">
-                    <GradientStop Color="#FFF0F0F0"/>
-                    <GradientStop Color="#FFF6F6F6" Offset="1"/>
-                </LinearGradientBrush>
-            </ComboBox.Background>
-            <Label Content="Francais"/>
-            <Label Content="English"/>
+        <Label x:Name="CreateTitle"  Content="Settings" HorizontalAlignment="Center" FontSize = "38" VerticalAlignment="Center" Width="176" Height="90" FontFamily="Segoe UI Black" Foreground="#AEBDCA"/>
+        <Label Content="Extensions :" HorizontalAlignment="Left" Margin="150,146,0,0" VerticalAlignment="Top" FontSize="20" Width="135" Height="50" FontFamily="Segoe UI Black" Foreground="#7895B2"/>
+        <Label Content="Log Type : " HorizontalAlignment="Left" Margin="469,67,0,0" VerticalAlignment="Top" FontSize="20" Width="135" Height="50" FontFamily="Segoe UI Black" Foreground="#7895B2" Grid.Row="1"/>
+        <ListBox Margin="156,194,497,35" Grid.RowSpan="2">
+            <CheckBox Content=".png"/>
+            <CheckBox Content=".jpeg"/>
+            <CheckBox Content=".txt"/>
+            <CheckBox Content=".dll"/>
+            <CheckBox Content=".docx"/>
+            <CheckBox Content=".xlsx"/>
+            <CheckBox Content=".ppt"/>
+            <CheckBox Content=".pdf"/>
+            <CheckBox Content=".mp4"/>
+            <CheckBox Content=".iso"/>
+            <CheckBox Content=".json"/>
+            <CheckBox Content=".html"/>
+            <CheckBox Content=".cs"/>
+            <CheckBox Content=".exe"/>
+        </ListBox>
+        <ComboBox HorizontalAlignment="Left" Margin="469,122,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120">
+            <Label>JSON</Label>
+            <Label>XML</Label>
         </ComboBox>
-        <Label Content="Changer de langue" HorizontalAlignment="Center" Margin="0,122,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <Button Content="Changer extensions" HorizontalAlignment="Center" VerticalAlignment="Top" Height="38" Width="148" Click="Button_Click" Background="#FF414141" Foreground="White" Margin="0,196,0,0" Grid.RowSpan="2"/>
-        <Button Content="Sauvegarder" HorizontalAlignment="Center" Margin="0,67,0,0" VerticalAlignment="Top" Height="42" Width="148" Background="#FF444444" Foreground="White" Grid.Row="1"/>
-        <Label Content="Réglages" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White" Width="141" FontSize="28"/>
-
+        <Label Content="Job Software : " HorizontalAlignment="Left" Margin="450,151,0,0" VerticalAlignment="Top" FontSize="20" Width="158" Height="50" FontFamily="Segoe UI Black" Foreground="#7895B2" RenderTransformOrigin="-0.421,0.541"/>
+        <Button Content="..." HorizontalAlignment="Left" Margin="622,208,0,226" Click="Button_Software" Width="31" Grid.RowSpan="2" Background="#E8DFCA"/>
+        <TextBox x:Name="ShowDialog" HorizontalAlignment="Left" Margin="450,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="158" IsEnabled="False" Grid.RowSpan="2"/>
+        <Button Content="Save" HorizontalAlignment="Left" Margin="694,192,0,10" Click="Button_Save" Width="59" Background="#E8DFCA" Grid.Row="1"/>
     </Grid>
 </Page>
