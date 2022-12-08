@@ -16,7 +16,7 @@
         <Label x:Name="CreateTitle"  Content="Settings" HorizontalAlignment="Center" FontSize = "38" VerticalAlignment="Center" Width="176" Height="90" FontFamily="Segoe UI Black" Foreground="#AEBDCA"/>
         <Label Content="Extensions :" HorizontalAlignment="Left" Margin="150,146,0,0" VerticalAlignment="Top" FontSize="20" Width="135" Height="50" FontFamily="Segoe UI Black" Foreground="#7895B2"/>
         <Label Content="Log Type : " HorizontalAlignment="Left" Margin="469,67,0,0" VerticalAlignment="Top" FontSize="20" Width="135" Height="50" FontFamily="Segoe UI Black" Foreground="#7895B2" Grid.Row="1"/>
-        <ListBox Margin="156,194,497,35" Grid.RowSpan="2">
+        <ListBox x:Name="ListExt" Margin="156,194,497,35" Grid.RowSpan="2">
             <CheckBox Content=".png"/>
             <CheckBox Content=".jpeg"/>
             <CheckBox Content=".txt"/>
@@ -32,9 +32,9 @@
             <CheckBox Content=".cs"/>
             <CheckBox Content=".exe"/>
         </ListBox>
-        <ComboBox HorizontalAlignment="Left" Margin="469,122,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120">
-            <Label>JSON</Label>
-            <Label>XML</Label>
+        <ComboBox x:Name="TypeLog" HorizontalAlignment="Left" Margin="469,122,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem x:Name="LabelJSON" Content="JSON"></ComboBoxItem>
+            <ComboBoxItem x:Name="LabelXML" Content="XML"></ComboBoxItem>
         </ComboBox>
         <Label Content="Job Software : " HorizontalAlignment="Left" Margin="450,151,0,0" VerticalAlignment="Top" FontSize="20" Width="158" Height="50" FontFamily="Segoe UI Black" Foreground="#7895B2" RenderTransformOrigin="-0.421,0.541"/>
         <Button Content="..." HorizontalAlignment="Left" Margin="622,208,0,226" Click="Button_Software" Width="31" Grid.RowSpan="2" Background="#E8DFCA"/>
