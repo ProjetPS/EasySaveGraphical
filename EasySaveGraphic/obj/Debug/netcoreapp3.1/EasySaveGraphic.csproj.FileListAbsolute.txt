@@ -4,7 +4,6 @@ C:\Users\Maxence\Source\Repos\EasySave2\EasySaveGraphic\bin\Debug\netcoreapp3.1\
 C:\Users\Maxence\Source\Repos\EasySave2\EasySaveGraphic\bin\Debug\netcoreapp3.1\EasySaveGraphic.runtimeconfig.dev.json
 C:\Users\Maxence\Source\Repos\EasySave2\EasySaveGraphic\bin\Debug\netcoreapp3.1\EasySaveGraphic.dll
 C:\Users\Maxence\Source\Repos\EasySave2\EasySaveGraphic\bin\Debug\netcoreapp3.1\EasySaveGraphic.pdb
-C:\Users\Maxence\Source\Repos\EasySave2\EasySaveGraphic\obj\Debug\netcoreapp3.1\EasySaveGraphic.csproj.AssemblyReference.cache
 C:\Users\Maxence\Source\Repos\EasySave2\EasySaveGraphic\obj\Debug\netcoreapp3.1\addwork.g.cs
 C:\Users\Maxence\Source\Repos\EasySave2\EasySaveGraphic\obj\Debug\netcoreapp3.1\Execute.g.cs
 C:\Users\Maxence\Source\Repos\EasySave2\EasySaveGraphic\obj\Debug\netcoreapp3.1\MainWindow.g.cs
