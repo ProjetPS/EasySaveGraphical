@@ -4,15 +4,11 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.IO;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Text.Json;
 using System.Text.Encodings.Web;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace EasySaveGraphic
 {
@@ -25,6 +21,9 @@ namespace EasySaveGraphic
         {
             InitializeComponent();
         }
+
+        public static string path = @"C:/Personnel/CESI/CodesA3/Prog_Sys/TestEtat/settings.json";
+        public static List<Config> configList = new List<Config>();
 
         public List<string> Extensions
         {
@@ -42,7 +41,7 @@ namespace EasySaveGraphic
                         boxesList.Add((string)ext.Content);
                     }
                 }
-                    return boxesList;
+                return boxesList;
             }
         }
 
@@ -54,9 +53,9 @@ namespace EasySaveGraphic
                 return filepath;
             }
         }
-       
 
-        public string LogType 
+
+        public string LogType
         {
             get
             {
@@ -106,7 +105,6 @@ namespace EasySaveGraphic
                 Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,  //Transform to UTF-8
             };
             string jsonString = JsonSerializer.Serialize(settingSave, options);
-            string path = @"C:/Personnel/CESI/CodesA3/Prog_Sys/TestEtat/settings.json";
             //Create the file, or overwrite if the file exists.
             using (FileStream fs = File.Create(path))
             {
