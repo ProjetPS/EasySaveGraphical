@@ -1,31 +1,35 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Maxence\\Source\\Repos\\EasySave2\\EasySaveGraphic\\EasySaveGraphic.csproj": {}
+    "C:\\Users\\aa\\Desktop\\EasySaveLiv2\\EasySaveGraphic\\EasySaveGraphic.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Maxence\\Source\\Repos\\EasySave2\\EasySaveGraphic\\EasySaveGraphic.csproj": {
+    "C:\\Users\\aa\\Desktop\\EasySaveLiv2\\EasySaveGraphic\\EasySaveGraphic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Maxence\\Source\\Repos\\EasySave2\\EasySaveGraphic\\EasySaveGraphic.csproj",
+        "projectUniqueName": "C:\\Users\\aa\\Desktop\\EasySaveLiv2\\EasySaveGraphic\\EasySaveGraphic.csproj",
         "projectName": "EasySaveGraphic",
-        "projectPath": "C:\\Users\\Maxence\\Source\\Repos\\EasySave2\\EasySaveGraphic\\EasySaveGraphic.csproj",
-        "packagesPath": "C:\\Users\\Maxence\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Maxence\\Source\\Repos\\EasySave2\\EasySaveGraphic\\obj\\",
+        "projectPath": "C:\\Users\\aa\\Desktop\\EasySaveLiv2\\EasySaveGraphic\\EasySaveGraphic.csproj",
+        "packagesPath": "C:\\Users\\aa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\aa\\Desktop\\EasySaveLiv2\\EasySaveGraphic\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Maxence\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\aa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
