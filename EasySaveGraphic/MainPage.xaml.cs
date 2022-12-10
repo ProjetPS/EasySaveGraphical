@@ -82,12 +82,40 @@ namespace EasySaveGraphic
 
         private void CreateWorkSave(object sender, RoutedEventArgs e)
         {
-            //TODO: Goto worksave creation page
+            //Go to backup job creation
+            var window = (Mainwindow)Application.Current.MainWindow;
+            Create goToCreate = new Create(isLangFR);
+
+            // Change window title in appropriate language
+            if (this.isLangFR)
+            {
+                window.Title = "EasySave - Création";
+            }
+            else
+            {
+                window.Title = "EasySave - Create";
+            }
+
+            window.Content = goToCreate;
         }
 
         private void ExecuteWS_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Goto worksave execution page
+            //Go to backup job execution
+            var window = (Mainwindow)Application.Current.MainWindow;
+            Execute goToCreate = new Execute(isLangFR);
+
+            // Change window title in appropriate language
+            if (this.isLangFR)
+            {
+                window.Title = "EasySave - Éxecution";
+            }
+            else
+            {
+                window.Title = "EasySave - Execution";
+            }
+
+            window.Content = goToCreate;
         }
     }
 }

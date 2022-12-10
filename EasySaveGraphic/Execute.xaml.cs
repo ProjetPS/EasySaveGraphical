@@ -24,17 +24,17 @@ namespace EasySaveGraphic
     {
 
         public static string CellValue;
+        private bool isLangFR = false;
 
-        //private bool isLangFR = false;
-        public Execute() //bool isFR
+        public Execute(bool isFR)
         {
             InitializeComponent();
 
-            /* if (isFR)
+             if (isFR)
              {
                  ChangetoFR();
                  this.isLangFR = true;
-             }*/
+             }
         }
         public class Backup
         {
@@ -95,9 +95,9 @@ namespace EasySaveGraphic
         private void GoBack(object sender, RoutedEventArgs e)
         {
             // Go back to main page
-            /*       var window = (Mainwindow)Application.Current.MainWindow;*/
+            var window = (Mainwindow)Application.Current.MainWindow;
 
-            /*  if (this.isLangFR)
+              if (this.isLangFR)
               {
                   //Go back in FR language
                   MainPage goBack = new MainPage(true);
@@ -109,14 +109,13 @@ namespace EasySaveGraphic
               {
                   //Go back in EN language
                   MainPage goBack = new MainPage();
-                  window.Title = "EasySave - Main menu";
+                  window.Title = "EasySave - Main Menu";
                   window.Content = goBack;
-              }*/
-
+              }
 
         }
 
-        private void backupGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void BackupGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGrid dataGrid = sender as DataGrid;
             DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
@@ -124,6 +123,17 @@ namespace EasySaveGraphic
             CellValue = RowColumn.Content.ToString();
             backupJob.Index = dataGrid.SelectedIndex;
 
+        }
+
+        private void ExecuteSave(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChangetoFR()
+        {
+            ExecuteTitle.Content = "Executer un travail de sauvegarde";
+            Execute_btn.Content = "Executer";
         }
     }
 }
