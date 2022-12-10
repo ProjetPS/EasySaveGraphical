@@ -8,18 +8,24 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Execute">
 
-    <Grid>
-        <Grid Background="#FF276BB7">
-            <TextBox x:Name="index" HorizontalAlignment="Left" Margin="289,316,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="58" Height="50" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" Background="#FFDFDFDF" BorderBrush="#FF1D84F7" BorderThickness="2" Foreground="White" />
-            <Label x:Name="rowLabel" HorizontalAlignment="Left" Margin="53,326,0,0" VerticalAlignment="Top" Height="30" FontSize="15" Foreground="White" Content="Ligne du travail de sauvegarde " Background="#FF1D84F7"/>
-            <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="120,10,164,215">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
-                    <DataGridTextColumn Header="source" Binding="{Binding Source}" />
-                    <DataGridTextColumn Header="Destination" Binding="{Binding Destination}" />
-                    <DataGridTextColumn Header="type" Binding="{Binding Type}" />
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
+        mc:Ignorable="d"
+        Title="Execute" Height="450" Width="800">
+
+    <Grid Name="ExecuteGrid" Background="#E8DFCA">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="219*"/>
+            <RowDefinition Height="215*"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="CreateTitle"  Content="Execute A BackupJob" HorizontalAlignment="Left" FontSize = "38" Margin="220,0,0,0" VerticalAlignment="Center" Width="417" Height="90" FontFamily="Segoe UI Black" Foreground="#7895B2"/>
+        <Button Content="Execute" HorizontalAlignment="Left" Margin="513,142,0,0" Grid.Row="1" VerticalAlignment="Top" Height="54" Width="107" FontFamily="Segoe UI Black" Background="#F5EFE6" Foreground="#7895B2" RenderTransformOrigin="1.72,0.655" Click="ExecuteSave"/>
+        <Button FontFamily="Segoe MDL2 Assets" Content="&#xE830;" HorizontalAlignment="Left" Margin="26,23,0,0" VerticalAlignment="Top" Click="GoBack" Height="24" Width="34"/>
+        <DataGrid x:Name="backupGrid" Margin="50,144,334,54" Grid.RowSpan="2"  Loaded="DataGrid_Loaded" ItemsSource="{Binding}" SelectionChanged="backupGrid_SelectionChanged" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding BackupName}" FontFamily="Arial" FontWeight="Bold" />
+                <DataGridTextColumn Binding="{Binding BackupSource}" FontFamily="Arial" FontWeight="Bold" />
+                <DataGridTextColumn Binding="{Binding BackupTarget}" FontFamily="Arial" FontWeight="Bold" />
+                <DataGridTextColumn Binding="{Binding BackupType}" FontFamily="Arial" FontWeight="Bold" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>
