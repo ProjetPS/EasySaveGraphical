@@ -23,7 +23,7 @@ namespace EasySaveGraphic
             //Process to the MainPage immediately
             InitializeComponent();
             MainPage gotoPages = new MainPage();
-            this.Content = gotoPages;
+            Content = gotoPages;
         }
     }
 }

@@ -32,6 +32,7 @@ namespace EasySaveGraphic
             saveList_btn.Content = "Mes travaux de sauvegarde";
             createWS_btn.Content = "Créer un nouveau travail de sauvegarde";
             executeWS_btn.Content = "Éxecuter un travail de sauvegarde";
+            exit_btn.Content = "Quitter";
             FR_btn.Opacity = opacity;
             EN_btn.Opacity = 1;
             this.isLangFR = true;
@@ -44,6 +45,7 @@ namespace EasySaveGraphic
             createWS_btn.Content = "Créer un nouveau travail de sauvegarde";
             executeWS_btn.Content = "Éxecuter un travail de sauvegarde";
             Application.Current.MainWindow.Title = "EasySave - Menu principal";
+            exit_btn.Content = "Quitter";
             FR_btn.Opacity = opacity;
             EN_btn.Opacity = 1;
             this.isLangFR = true;
@@ -56,6 +58,7 @@ namespace EasySaveGraphic
             createWS_btn.Content = "Create a new worksave";
             executeWS_btn.Content = "Execute a worksave";
             Application.Current.MainWindow.Title = "EasySave - Main menu";
+            exit_btn.Content = "Exit";
             EN_btn.Opacity = opacity;
             FR_btn.Opacity = 1;
             this.isLangFR = false;
@@ -116,6 +119,27 @@ namespace EasySaveGraphic
             }
 
             window.Content = goToCreate;
+        }
+
+        private void exit_Click(object sender, RoutedEventArgs e)
+        {
+            // If language is FR
+            if (this.isLangFR)
+            {
+                if (MessageBox.Show("Voulez-vous vraiment quitter EasySave ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    // If Yes pressed, close EasySave
+                    System.Windows.Application.Current.Shutdown();
+                }
+            }
+            else
+            {
+                if (MessageBox.Show("Do you really want to close EasySave ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    // If Yes pressed, close EasySave
+                    System.Windows.Application.Current.Shutdown();
+                }
+            }
         }
     }
 }

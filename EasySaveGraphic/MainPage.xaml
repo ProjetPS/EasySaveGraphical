@@ -8,48 +8,31 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MainPage"
       Background="#E8DFCA">
-    <Page.Resources>
-        <Style TargetType="{x:Type Button}">
-            <Setter Property="Margin" Value="0,10,0,0"/>
-            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-            <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="1"/>
-            <Setter Property="Cursor" Value="Hand"/>
-        </Style>
-    </Page.Resources>
 
-    <StackPanel Width="250">
-        <StackPanel.Resources>
-            <Style TargetType="{x:Type StackPanel}">
-                <Setter Property="VerticalAlignment" Value="Center"/>
-            </Style>
-            <Style TargetType="{x:Type Image}">
-                <Setter Property="VerticalAlignment" Value="Top"/>
-            </Style>
-        </StackPanel.Resources>
+    <Grid Width="250" VerticalAlignment="Center" Height="530">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
 
+        </Grid.RowDefinitions>
+        
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Image x:Name="FR_btn" Source="/FR_flag.png" Height="22" Width="22" MouseLeftButtonDown="FR_Lang" Cursor="Hand" Grid.Column="1"/>
-            <Image x:Name="EN_btn" Source="/EN_flag.png" Height="22" Width="22" MouseLeftButtonDown="EN_Lang" Cursor="Hand" Opacity="0.25"/>
+            <Image x:Name="FR_btn" Source="/FR_flag.png" Height="22" Width="22" MouseLeftButtonDown="FR_Lang" Cursor="Hand" Grid.Column="1" Margin="0,177,0,251"/>
+            <Image x:Name="EN_btn" Source="/EN_flag.png" Height="22" Width="22" MouseLeftButtonDown="EN_Lang" Cursor="Hand" Opacity="0.25" Margin="0,177,0,251"/>
         </Grid>
-        
+
         <!--Worksave list button-->
-        <Button x:Name="saveList_btn" Click="WorkSaveList" Height="37" FontFamily="HP Simplified">My worksave list</Button>
+        <Button x:Name="saveList_btn" Click="WorkSaveList" Height="37" FontFamily="HP Simplified" Margin="0,204,0,209">My worksave list</Button>
 
         <!--Worksave creation button-->
-        <Button x:Name="createWS_btn" Click="CreateWorkSave" Height="37" FontFamily="HP Simplified">Create a new worksave</Button>
+        <Button x:Name="createWS_btn" Click="CreateWorkSave" Height="37" FontFamily="HP Simplified" Margin="0,246,0,167">Create a new worksave</Button>
 
         <!--Worksave execution button-->
-        <Button x:Name="executeWS_btn" Click="ExecuteWS_Click" Height="37" FontFamily="HP Simplified">Execute a worksave</Button>
+        <Button x:Name="executeWS_btn" Click="ExecuteWS_Click" Height="37" FontFamily="HP Simplified" Margin="0,288,0,125">Execute a worksave</Button>
+        <Button x:Name="exit_btn" Click="exit_Click" Height="34" Width="68" Margin="91,330,91,86">Exit</Button>
 
-    </StackPanel>
+    </Grid>
 </Page>
