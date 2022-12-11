@@ -51,5 +51,9 @@
         <!--Worksave execution button-->
         <Button x:Name="executeWS_btn" Click="ExecuteWS_Click" Height="37" FontFamily="HP Simplified">Execute a worksave</Button>
 
+        <!--Parameters-->
+        <Button x:Name="parameters_btn" Click="Parameters_Click" Height="37" FontFamily="HP Simplified">Parameters</Button>
+
     </StackPanel>
+    
 </Page>
