@@ -63,11 +63,10 @@ namespace EasySaveGraphic
             ExecuteTitle.Content = "Executer une sauvegarde";
             ExecuteButton.Content = "Executer";
         }
-        private void DataGrid_Loaded(object sender, RoutedEventArgs e)
+        public void DataGrid_Loaded(object sender, RoutedEventArgs e)
         {
             //Print the backupJob List
             backupJob.Open(backupJob.filePath);
-            //Console.WriteLine(i + " - " + backupJob.backupList[i].name);
 
             backCollection = new ObservableCollection<Backup> { };
             for (int i = 0; i < backupJob.backupList.Count; i++)
