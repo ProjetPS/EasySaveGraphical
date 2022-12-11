@@ -8,15 +8,11 @@
       d:DesignHeight="450" d:DesignWidth="776"
       Title="settings">
 
-    <Grid Background="#E8DFCA" Margin="0,0,0,-6">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="203*"/>
-            <RowDefinition Height="227*"/>
-        </Grid.RowDefinitions>
-        <Label x:Name="CreateTitle"  Content="Settings" HorizontalAlignment="Center" FontSize = "38" VerticalAlignment="Center" Width="176" Height="90" FontFamily="Segoe UI Black" Foreground="#AEBDCA"/>
-        <Label Content="Extensions :" HorizontalAlignment="Left" Margin="150,146,0,0" VerticalAlignment="Top" FontSize="20" Width="135" Height="50" FontFamily="Segoe UI Black" Foreground="#7895B2"/>
-        <Label Content="Log Type : " HorizontalAlignment="Left" Margin="469,67,0,0" VerticalAlignment="Top" FontSize="20" Width="135" Height="50" FontFamily="Segoe UI Black" Foreground="#7895B2" Grid.Row="1"/>
-        <ListBox x:Name="ListExt" Margin="156,194,497,35" Grid.RowSpan="2">
+    <Canvas Background="#E8DFCA" Margin="0,0,0,-6">
+        <Label x:Name="CreateTitle"  Content="Settings" FontSize = "38" Width="260" Height="90" FontFamily="Segoe UI Black" Foreground="#AEBDCA" Canvas.Left="329" Canvas.Top="35"/>
+        <Label Content="Extensions :" Margin="150,146,0,0" FontSize="20" Width="135" Height="50" FontFamily="Segoe UI Black" Foreground="#7895B2" Canvas.Left="-42" Canvas.Top="-4"/>
+        <Label x:Name="NameLT" Content="Log Type : " Margin="469,67,0,0" FontSize="20" Width="135" Height="50" FontFamily="Segoe UI Black" Foreground="#7895B2" Grid.Row="1" RenderTransformOrigin="-0.022,4.428" Canvas.Top="239"/>
+        <ListBox x:Name="ListExt" Margin="156,194,497,35" Grid.RowSpan="2" Canvas.Left="-19" Height="219">
             <CheckBox Content=".png"/>
             <CheckBox Content=".jpeg"/>
             <CheckBox Content=".txt"/>
@@ -32,13 +28,14 @@
             <CheckBox Content=".cs"/>
             <CheckBox Content=".exe"/>
         </ListBox>
-        <ComboBox x:Name="TypeLog" HorizontalAlignment="Left" Margin="469,122,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120">
+        <ComboBox x:Name="TypeLog" Margin="469,122,0,0" Grid.Row="1" Width="120" Canvas.Top="228">
             <ComboBoxItem x:Name="LabelJSON" Content="JSON"></ComboBoxItem>
             <ComboBoxItem x:Name="LabelXML" Content="XML"></ComboBoxItem>
         </ComboBox>
-        <Label Content="Job Software : " HorizontalAlignment="Left" Margin="450,151,0,0" VerticalAlignment="Top" FontSize="20" Width="158" Height="50" FontFamily="Segoe UI Black" Foreground="#7895B2" RenderTransformOrigin="-0.421,0.541"/>
+        <Label x:Name="NameJS" Content="Job Software : " Margin="450,151,0,0" FontSize="20" Width="158" Height="50" FontFamily="Segoe UI Black" Foreground="#7895B2" RenderTransformOrigin="-0.421,0.541" Canvas.Top="16"/>
         <Button Content="..." HorizontalAlignment="Left" Margin="622,208,0,226" Click="Button_Software" Width="31" Grid.RowSpan="2" Background="#E8DFCA"/>
         <TextBox x:Name="ShowDialog" HorizontalAlignment="Left" Margin="450,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="158" IsEnabled="False" Grid.RowSpan="2"/>
-        <Button Content="Save" HorizontalAlignment="Left" Margin="694,192,0,10" Click="Button_Save" Width="59" Background="#E8DFCA" Grid.Row="1"/>
-    </Grid>
+        <Button x:Name="SaveButton" Content="Save" Margin="694,192,0,10" Click="Button_Save" Width="90" Background="#E8DFCA" Grid.Row="1" Canvas.Left="-16" Canvas.Top="228"/>
+        <Button FontFamily="Segoe MDL2 Assets" Content="&#xE830;" HorizontalAlignment="Left" Margin="26,23,0,0" VerticalAlignment="Top" Click="GoBack" Height="24" Width="34"/>
+    </Canvas>
 </Page>

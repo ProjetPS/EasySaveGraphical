@@ -117,5 +117,24 @@ namespace EasySaveGraphic
             }
             window.Content = goToEWS;
         }
+
+        private void Parameters_Click(object sender, RoutedEventArgs e)
+        {
+            //Go to backup job execution
+            var window = (Mainwindow)Application.Current.MainWindow;
+            settings goToSettings = new settings(isLangFR);
+
+            // Change window title in appropriate language
+            if (this.isLangFR)
+            {
+                window.Title = "EasySave - Paramètres";
+            }
+            else
+            {
+                window.Title = "EasySave - Settings";
+            }
+
+            window.Content = goToSettings;
+        }
     }
 }

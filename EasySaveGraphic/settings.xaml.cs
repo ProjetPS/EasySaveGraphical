@@ -14,9 +14,15 @@ namespace EasySaveGraphic
     /// </summary>
     public partial class settings : Page
     {
-        public settings()
+        private bool isLangFR = false;
+        public settings(bool isFR)
         {
             InitializeComponent();
+            if (isFR)
+            {
+                ChangetoFR();
+                this.isLangFR = true;
+            }
         }
 
         public static string path = @"C:/temp/settings.json";
@@ -109,6 +115,36 @@ namespace EasySaveGraphic
                 //Add some information to the file.
                 fs.Write(info, 0, info.Length);
             }
+        }
+
+        private void GoBack(object sender, RoutedEventArgs e)
+        {
+            // Go back to main page
+            var window = (Mainwindow)Application.Current.MainWindow;
+
+            if (this.isLangFR)
+            {
+                //Go back in FR language
+                MainPage goBack = new MainPage(true);
+                window.Title = "EasySave - Menu principal";
+                window.Content = goBack;
+
+            }
+            else
+            {
+                //Go back in EN language
+                MainPage goBack = new MainPage();
+                window.Title = "EasySave - Main Menu";
+                window.Content = goBack;
+            }
+        }
+
+        private void ChangetoFR()
+        {
+            NameJS.Content = "Logiciel Métier :";
+            NameLT.Content = "Type de Log :";
+            SaveButton.Content = "Sauvegarder";
+            CreateTitle.Content = "Paramètres";
         }
     }
     public class Config
