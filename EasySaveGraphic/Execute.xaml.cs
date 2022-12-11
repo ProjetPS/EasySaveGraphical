@@ -25,17 +25,20 @@ namespace EasySaveGraphic
 
         public static string CellValue;
 
-        //private bool isLangFR = false;
-      /*  public Execute() //bool isFR
+        private bool isLangFR = false;
+        public Execute(bool isFR) 
         {
             InitializeComponent();
 
-            *//* if (isFR)
-             {
-                 ChangetoFR();
-                 this.isLangFR = true;
-             }*//*
-        }*/
+            if (isFR)
+            {
+                ChangetoFR();
+                this.isLangFR = true;
+            }
+
+
+        }
+
         public class Backup
         {
             public string BackupName { get; set; }
@@ -46,6 +49,20 @@ namespace EasySaveGraphic
 
         public static ObservableCollection<Backup> backCollection;
 
+        private void backupGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid dataGrid = sender as DataGrid;
+            DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
+            DataGridCell RowColumn = dataGrid.Columns[0].GetCellContent(row).Parent as DataGridCell;
+            CellValue = RowColumn.Content.ToString();
+            backupJob.Index = dataGrid.SelectedIndex;
+
+        }
+        private void ChangetoFR()
+        {
+            ExecuteTitle.Content = "Executer une sauvegarde";
+            ExecuteButton.Content = "Executer";
+        }
         private void DataGrid_Loaded(object sender, RoutedEventArgs e)
         {
             //Print the backupJob List
@@ -95,35 +112,27 @@ namespace EasySaveGraphic
         private void GoBack(object sender, RoutedEventArgs e)
         {
             // Go back to main page
-            /*       var window = (Mainwindow)Application.Current.MainWindow;*/
+            var window = (Mainwindow)Application.Current.MainWindow;
 
-            /*  if (this.isLangFR)
-              {
-                  //Go back in FR language
-                  MainPage goBack = new MainPage(true);
-                  window.Title = "EasySave - Menu principal";
-                  window.Content = goBack;
+            if (this.isLangFR)
+            {
+                //Go back in FR language
+                MainPage goBack = new MainPage(true);
+                window.Title = "EasySave - Menu principal";
+                window.Content = goBack;
 
-              }
-              else
-              {
-                  //Go back in EN language
-                  MainPage goBack = new MainPage();
-                  window.Title = "EasySave - Main menu";
-                  window.Content = goBack;
-              }*/
+            }
+            else
+            {
+                //Go back in EN language
+                MainPage goBack = new MainPage();
+                window.Title = "EasySave - Main menu";
+                window.Content = goBack;
+            }
 
-
-        }
-
-        private void backupGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            DataGrid dataGrid = sender as DataGrid;
-            DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
-            DataGridCell RowColumn = dataGrid.Columns[0].GetCellContent(row).Parent as DataGridCell;
-            CellValue = RowColumn.Content.ToString();
-            backupJob.Index = dataGrid.SelectedIndex;
 
         }
+
+
     }
 }

@@ -22,16 +22,27 @@ namespace EasySaveGraphic
     public partial class Create : Page // Create Page
     {
 
-        //private bool isLangFR = false;
-        public Create() //bool isFR
+        private bool isLangFR = false;
+        public Create(bool isFR) 
         {
             InitializeComponent();
 
-           /* if (isFR)
+            if (isFR)
             {
                 ChangetoFR();
                 this.isLangFR = true;
-            }*/
+            }
+        }
+
+        private void ChangetoFR()
+        {
+            CreateTitle.Content = "Créer une sauvegarde";
+            name.Content = "Nom : ";
+            sourceFile.Content = "Fichier source : ";
+            targetFile.Content = "Fichier cible : ";
+            type.Content = "Type : ";
+            CreateButton.Content = "Créer";
+            
         }
 
         private void CreateBackupJob(object sender, RoutedEventArgs e)
@@ -91,7 +102,7 @@ namespace EasySaveGraphic
 
         private void GoBack(object sender, RoutedEventArgs e)
         {
-          /*  // Go back to main page
+            // Go back to main page
             var window = (Mainwindow)Application.Current.MainWindow;
 
             if (this.isLangFR)
@@ -108,7 +119,7 @@ namespace EasySaveGraphic
                 MainPage goBack = new MainPage();
                 window.Title = "EasySave - Main menu";
                 window.Content = goBack;
-            }*/
+            }
 
 
         }
