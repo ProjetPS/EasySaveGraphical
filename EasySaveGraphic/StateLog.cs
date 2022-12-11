@@ -11,7 +11,7 @@ namespace EasySaveGraphic
 {
     public class LogType
     {
-        public void JSONType()
+        public static void JSONType()
         {
             var stateLog = new StateInfo()  //JSON informations
             {
@@ -63,7 +63,7 @@ namespace EasySaveGraphic
             }
         }
 
-        public void XMLType()
+        public static void XMLType()
         {
             var stateLog = new StateInfo()  //JSON informations
             {
@@ -95,7 +95,18 @@ namespace EasySaveGraphic
 
         public static void CallType()
         {
-
+            string settingsFile = @"C:/Personnel/CESI/CodesA3/Prog_Sys/TestEtat/settings.json";
+            string jsonString = File.ReadAllText(settingsFile);
+            Config stateInfo = JsonSerializer.Deserialize<Config>(jsonString)!;
+            string choiceType = stateInfo.LogType;
+            if (choiceType == "JSON")
+            {
+                JSONType();
+            } 
+            else if (choiceType == "XML")
+            {
+                XMLType();
+            }
         }
 
     }
