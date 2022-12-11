@@ -43,7 +43,7 @@ namespace EasySaveGraphic
             saveList_btn.Content = "Mes travaux de sauvegarde";
             createWS_btn.Content = "Créer un nouveau travail de sauvegarde";
             executeWS_btn.Content = "Éxecuter un travail de sauvegarde";
-            parameters_btn.Content = "Paramètres";
+            settings_btn.Content = "Paramètres";
             Application.Current.MainWindow.Title = "EasySave - Menu principal";
             FR_btn.Opacity = opacity;
             EN_btn.Opacity = 1;
@@ -56,7 +56,7 @@ namespace EasySaveGraphic
             saveList_btn.Content = "My worksave list";
             createWS_btn.Content = "Create a new worksave";
             executeWS_btn.Content = "Execute a worksave";
-            parameters_btn.Content = "Parameters";
+            settings_btn.Content = "Settings";
             Application.Current.MainWindow.Title = "EasySave - Main menu";
             EN_btn.Opacity = opacity;
             FR_btn.Opacity = 1;
@@ -124,7 +124,7 @@ namespace EasySaveGraphic
         {
             //Go to backup job execution
             var window = (Mainwindow)Application.Current.MainWindow;
-            settings goToParameters = new settings(isLangFR);
+            settings goToSettings = new settings(isLangFR);
 
             // Change window title in appropriate language
             if (this.isLangFR)
@@ -133,10 +133,10 @@ namespace EasySaveGraphic
             }
             else
             {
-                window.Title = "EasySave - Parameters";
+                window.Title = "EasySave - Settings";
             }
 
-            window.Content = goToParameters;
+            window.Content = goToSettings;
         }
     }
 }
