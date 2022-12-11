@@ -32,7 +32,13 @@
 
         <!--Worksave execution button-->
         <Button x:Name="executeWS_btn" Click="ExecuteWS_Click" Height="37" FontFamily="HP Simplified" Margin="0,288,0,125">Execute a worksave</Button>
-        <Button x:Name="exit_btn" Click="exit_Click" Height="34" Width="68" Margin="91,330,91,86">Exit</Button>
-
+        
+        <!--Exit Application button-->
+        <Button x:Name="exit_btn" Click="Exit_Click" Height="34" Width="68" Margin="91,330,91,86">Exit</Button>
+        
+        <!--Remote acces button-->
+        <Button x:Name="clientRemote_btn" Click="ClientRemote_Click" ToolTip="Client remote access" Height="34" Width="50" Margin="18,330,164,86">
+            <Image Source="/open_new_window.png"/>
+        </Button>
     </Grid>
 </Page>

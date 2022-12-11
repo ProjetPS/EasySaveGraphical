@@ -11,6 +11,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using System.Diagnostics;
+using System.Net;
+using System.Net.Sockets;
+using System.Threading.Tasks;
+
 namespace EasySaveGraphic
 {
     /// <summary>
@@ -33,6 +38,7 @@ namespace EasySaveGraphic
             createWS_btn.Content = "Créer un nouveau travail de sauvegarde";
             executeWS_btn.Content = "Éxecuter un travail de sauvegarde";
             exit_btn.Content = "Quitter";
+            clientRemote_btn.ToolTip = "Accès client à distance";
             FR_btn.Opacity = opacity;
             EN_btn.Opacity = 1;
             this.isLangFR = true;
@@ -46,6 +52,7 @@ namespace EasySaveGraphic
             executeWS_btn.Content = "Éxecuter un travail de sauvegarde";
             Application.Current.MainWindow.Title = "EasySave - Menu principal";
             exit_btn.Content = "Quitter";
+            clientRemote_btn.ToolTip = "Accès client à distance";
             FR_btn.Opacity = opacity;
             EN_btn.Opacity = 1;
             this.isLangFR = true;
@@ -59,6 +66,7 @@ namespace EasySaveGraphic
             executeWS_btn.Content = "Execute a worksave";
             Application.Current.MainWindow.Title = "EasySave - Main menu";
             exit_btn.Content = "Exit";
+            clientRemote_btn.ToolTip = "Client remote access";
             EN_btn.Opacity = opacity;
             FR_btn.Opacity = 1;
             this.isLangFR = false;
@@ -109,7 +117,7 @@ namespace EasySaveGraphic
             Execute goToCreate = new Execute(isLangFR);
 
             // Change window title in appropriate language
-            if (this.isLangFR)
+            if (isLangFR)
             {
                 window.Title = "EasySave - Éxecution";
             }
@@ -121,10 +129,10 @@ namespace EasySaveGraphic
             window.Content = goToCreate;
         }
 
-        private void exit_Click(object sender, RoutedEventArgs e)
+        private void Exit_Click(object sender, RoutedEventArgs e)
         {
             // If language is FR
-            if (this.isLangFR)
+            if (isLangFR)
             {
                 if (MessageBox.Show("Voulez-vous vraiment quitter EasySave ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
@@ -138,6 +146,50 @@ namespace EasySaveGraphic
                 {
                     // If Yes pressed, close EasySave
                     System.Windows.Application.Current.Shutdown();
+                }
+            }
+        }
+
+        private void ClientRemote_Click(object sender, RoutedEventArgs e)
+        {
+            StartServerSocketAsync();
+            Process client = new Process();
+            client.StartInfo.FileName = @"..\..\..\..\EasySave_Client\bin\Release\netcoreapp3.1\EasySave_Client.exe";
+            client.Start();
+            
+        }
+
+        private static async Task StartServerSocketAsync()
+        {
+            IPAddress ipAddr = IPAddress.Parse("127.0.0.1");
+            IPEndPoint ipEndPoint = new IPEndPoint(ipAddr, 11_000);
+
+            using Socket listener = new Socket(
+                ipEndPoint.AddressFamily,
+                SocketType.Stream,
+                ProtocolType.Tcp);
+
+            listener.Bind(ipEndPoint);
+            listener.Listen(100);
+
+            var handler = await listener.AcceptAsync();
+            while (true)
+            {
+                // Receive message.
+                var buffer = new byte[1_024];
+                var received = await handler.ReceiveAsync(buffer, SocketFlags.None);
+                var response = Encoding.UTF8.GetString(buffer, 0, received);
+
+                var eom = "<|EOM|>";
+                if (response.IndexOf(eom) > -1 /* is end of message */)
+                {
+                    Console.WriteLine(
+                        $"Socket server received message: \"{response.Replace(eom, "")}\"");
+
+                    var ackMessage = "<|ACK|>"; // "<|ACK|>"
+                    var echoBytes = Encoding.UTF8.GetBytes(ackMessage);
+                    await handler.SendAsync(echoBytes, 0);
+                    break;
                 }
             }
         }

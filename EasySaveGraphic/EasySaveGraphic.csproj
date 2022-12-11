@@ -15,7 +15,9 @@
     <None Remove="Images\add.png" />
     <None Remove="Images\EasySave.ico" />
     <None Remove="Images\list.png" />
+    <None Remove="Images\open_new_window.png" />
     <None Remove="list.png" />
+    <None Remove="open_new_window.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,7 +32,9 @@
     <Resource Include="Images\add.png" />
     <Resource Include="Images\EasySave.ico" />
     <Resource Include="Images\list.png" />
+    <Resource Include="Images\open_new_window.png" />
     <Resource Include="list.png" />
+    <Resource Include="open_new_window.png" />
   </ItemGroup>
 
   <ItemGroup>
