@@ -86,6 +86,7 @@ namespace EasySaveGraphic
                 string sourceFile = backupJob.backupList[backupJob.Index].fileSource;
                 string targetFile = backupJob.backupList[backupJob.Index].fileTarget;
                 string saveType = backupJob.backupList[backupJob.Index].type;
+                LogType.CallType();
                 backupJob.MoveFileDirectory(sourceFile, targetFile, saveType);
             }
 
