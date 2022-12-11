@@ -9,7 +9,7 @@
       Title="settings">
 
     <Canvas Background="#E8DFCA" Margin="0,0,0,-6">
-        <Label x:Name="CreateTitle"  Content="Settings" FontSize = "38" Width="176" Height="90" FontFamily="Segoe UI Black" Foreground="#AEBDCA" Canvas.Left="329" Canvas.Top="35"/>
+        <Label x:Name="CreateTitle"  Content="Settings" FontSize = "38" Width="260" Height="90" FontFamily="Segoe UI Black" Foreground="#AEBDCA" Canvas.Left="329" Canvas.Top="35"/>
         <Label Content="Extensions :" Margin="150,146,0,0" FontSize="20" Width="135" Height="50" FontFamily="Segoe UI Black" Foreground="#7895B2" Canvas.Left="-42" Canvas.Top="-4"/>
         <Label x:Name="NameLT" Content="Log Type : " Margin="469,67,0,0" FontSize="20" Width="135" Height="50" FontFamily="Segoe UI Black" Foreground="#7895B2" Grid.Row="1" RenderTransformOrigin="-0.022,4.428" Canvas.Top="239"/>
         <ListBox x:Name="ListExt" Margin="156,194,497,35" Grid.RowSpan="2" Canvas.Left="-19" Height="219">
@@ -35,7 +35,7 @@
         <Label x:Name="NameJS" Content="Job Software : " Margin="450,151,0,0" FontSize="20" Width="158" Height="50" FontFamily="Segoe UI Black" Foreground="#7895B2" RenderTransformOrigin="-0.421,0.541" Canvas.Top="16"/>
         <Button Content="..." HorizontalAlignment="Left" Margin="622,208,0,226" Click="Button_Software" Width="31" Grid.RowSpan="2" Background="#E8DFCA"/>
         <TextBox x:Name="ShowDialog" HorizontalAlignment="Left" Margin="450,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="158" IsEnabled="False" Grid.RowSpan="2"/>
-        <Button x:Name="SaveButton" Content="Save" Margin="694,192,0,10" Click="Button_Save" Width="59" Background="#E8DFCA" Grid.Row="1" Canvas.Left="-16" Canvas.Top="228"/>
+        <Button x:Name="SaveButton" Content="Save" Margin="694,192,0,10" Click="Button_Save" Width="90" Background="#E8DFCA" Grid.Row="1" Canvas.Left="-16" Canvas.Top="228"/>
         <Button FontFamily="Segoe MDL2 Assets" Content="&#xE830;" HorizontalAlignment="Left" Margin="26,23,0,0" VerticalAlignment="Top" Click="GoBack" Height="24" Width="34"/>
     </Canvas>
 </Page>

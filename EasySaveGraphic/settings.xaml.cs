@@ -144,6 +144,7 @@ namespace EasySaveGraphic
             NameJS.Content = "Logiciel Métier :";
             NameLT.Content = "Type de Log :";
             SaveButton.Content = "Sauvegarder";
+            CreateTitle.Content = "Paramètres";
         }
     }
     public class Config
