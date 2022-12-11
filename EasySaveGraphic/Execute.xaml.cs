@@ -66,7 +66,7 @@ namespace EasySaveGraphic
 
         }
 
-        private void SequentialExec_Click(object sender, RoutedEventArgs e)
+        private void ExecuteSave(object sender, RoutedEventArgs e)
         {
             bool canExecute = false;
             Process[] processes = Process.GetProcessesByName("notepad");
@@ -123,11 +123,6 @@ namespace EasySaveGraphic
             DataGridCell RowColumn = dataGrid.Columns[0].GetCellContent(row).Parent as DataGridCell;
             CellValue = RowColumn.Content.ToString();
             backupJob.Index = dataGrid.SelectedIndex;
-
-        }
-
-        private void ExecuteSave(object sender, RoutedEventArgs e)
-        {
 
         }
 

@@ -22,7 +22,7 @@ namespace EasySaveGraphic
                 Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,  //Transform to UTF-8
             };
             string jsonString = JsonSerializer.Serialize(stateLog, options);
-            string path = "C:/Personnel/CESI/CodesA3/Prog_Sys/TestEtat/statelog.json";
+            string path = "C:/temp/statelog.json";
 
             try
             {
@@ -81,13 +81,13 @@ namespace EasySaveGraphic
                 new XElement("nbfileslefttodo", stateLog.NbFilesLeftToDo.ToString()),
                 new XElement("progression", stateLog.Progression.ToString())))
     );
-            string path = "C:/Personnel/CESI/CodesA3/Prog_Sys/TestEtat/statelog.xml";
+            string path = "C:/temp/statelog.xml";
             document.Save(path);
         }
 
         public static void CallType()
         {
-            string settingsFile = @"C:/Personnel/CESI/CodesA3/Prog_Sys/TestEtat/settings.json";
+            string settingsFile = @"C:/temp/settings.json";
             string jsonString = File.ReadAllText(settingsFile);
             Config stateInfo = JsonSerializer.Deserialize<Config>(jsonString)!;
             string choiceType = stateInfo.LogType;
