@@ -26,16 +26,16 @@ namespace EasySaveGraphic
         public static string CellValue;
 
         //private bool isLangFR = false;
-        public Execute() //bool isFR
+      /*  public Execute() //bool isFR
         {
             InitializeComponent();
 
-            /* if (isFR)
+            *//* if (isFR)
              {
                  ChangetoFR();
                  this.isLangFR = true;
-             }*/
-        }
+             }*//*
+        }*/
         public class Backup
         {
             public string BackupName { get; set; }
@@ -66,7 +66,7 @@ namespace EasySaveGraphic
 
         }
 
-        private void SequentialExec_Click(object sender, RoutedEventArgs e)
+        private void ExecuteSave(object sender, RoutedEventArgs e)
         {
             bool canExecute = false;
             Process[] processes = Process.GetProcessesByName("notepad");
