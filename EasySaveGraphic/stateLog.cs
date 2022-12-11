@@ -13,10 +13,7 @@ namespace EasySaveGraphic
         {
             var stateLog = new StateInfo()  //JSON informations
             {
-                BackupName = "",
-                SourceFilePath = "",
-                TargetFilePath = "",
-                NbFilesLeftToDo = 1,
+                NbFilesLeftToDo = 0,
             };
 
             var options = new JsonSerializerOptions
@@ -65,10 +62,7 @@ namespace EasySaveGraphic
         {
             var stateLog = new StateInfo()  //JSON informations
             {
-                BackupName = "",
-                SourceFilePath = "",
-                TargetFilePath = "",
-                NbFilesLeftToDo = 1,
+                NbFilesLeftToDo = 0,
             };
             XDocument document = new XDocument
     (
@@ -110,9 +104,9 @@ namespace EasySaveGraphic
     }
     public class StateInfo
     {
-        public string BackupName { get; set; }
-        public string SourceFilePath { get; set; }
-        public string TargetFilePath { get; set; }
+        public string BackupName => backupJob.backupList[backupJob.Index].name;
+        public string SourceFilePath => backupJob.backupList[backupJob.Index].fileSource;
+        public string TargetFilePath => backupJob.backupList[backupJob.Index].fileTarget;
         public string Time
         {
             get
