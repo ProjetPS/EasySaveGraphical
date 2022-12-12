@@ -60,7 +60,7 @@ namespace EasySaveGraphic
 
         public static void XMLType()
         {
-            var stateLog = new StateInfo()  //JSON informations
+            var stateLog = new StateInfo()  //XML informations
             {
                 NbFilesLeftToDo = 0,
             };

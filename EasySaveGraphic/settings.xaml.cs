@@ -76,6 +76,16 @@ namespace EasySaveGraphic
             }
         }
 
+        public int LimitSize
+        {
+            get
+            {
+                int limit = Int32.Parse(Enter_Limit.Text);
+                return limit;
+            }
+
+        }
+
         public void Button_Software(object sender, RoutedEventArgs e)
         {
             // Configure open file dialog box
@@ -101,6 +111,7 @@ namespace EasySaveGraphic
                 LogType = LogType,
                 Extensions = Extensions,
                 JobSoftware = JobSoftware,
+                LimitSize = LimitSize,
             };
             var options = new JsonSerializerOptions
             {
@@ -145,6 +156,7 @@ namespace EasySaveGraphic
             NameLT.Content = "Type de Log :";
             SaveButton.Content = "Sauvegarder";
             CreateTitle.Content = "Paramètres";
+            Limit_file.Content = "Limite taille (en ko) :";
         }
     }
     public class Config
@@ -152,5 +164,6 @@ namespace EasySaveGraphic
         public string LogType { get; set; }
         public List<string> Extensions { get; set; }
         public string JobSoftware { get; set; }
+        public int LimitSize { get; set; }
     }
 }
