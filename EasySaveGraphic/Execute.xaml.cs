@@ -49,13 +49,14 @@ namespace EasySaveGraphic
 
         public static ObservableCollection<Backup> backCollection;
 
-        private void backupGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void BackupGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGrid dataGrid = sender as DataGrid;
-            DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
+            /*DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
             DataGridCell RowColumn = dataGrid.Columns[0].GetCellContent(row).Parent as DataGridCell;
-            CellValue = RowColumn.Content.ToString();
-            backupJob.Index = dataGrid.SelectedIndex;
+            CellValue = RowColumn.Content.ToString();*/
+            //backupJob.Index = dataGrid.SelectedIndex;
+            backupJob.backupIndex.Add(dataGrid.SelectedIndex);
 
         }
         private void ChangetoFR()
@@ -99,10 +100,14 @@ namespace EasySaveGraphic
 
             if (canExecute == true)
             {
-                string sourceFile = backupJob.backupList[backupJob.Index].fileSource;
-                string targetFile = backupJob.backupList[backupJob.Index].fileTarget;
-                string saveType = backupJob.backupList[backupJob.Index].type;
-                backupJob.MoveFileDirectory(sourceFile, targetFile, saveType);
+                for (int i = 0; i < backupJob.backupIndex.Count; i++)
+                {
+                    int Index = backupJob.backupIndex[i];
+                    string sourceFile = backupJob.backupList[Index].fileSource;
+                    string targetFile = backupJob.backupList[Index].fileTarget;
+                    string saveType = backupJob.backupList[Index].type;
+                    backupJob.MoveFileDirectory(sourceFile, targetFile, saveType);
+                }
             }
 
         }
