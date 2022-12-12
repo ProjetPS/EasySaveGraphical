@@ -14,6 +14,7 @@ using EasySaveGraphic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Diagnostics;
+using System.Threading;
 
 namespace EasySaveGraphic
 {
@@ -100,13 +101,18 @@ namespace EasySaveGraphic
 
             if (canExecute == true)
             {
-                for (int i = 0; i < backupJob.backupIndex.Count; i++)
+                Thread[] move = new Thread[backupJob.backupIndex.Count];
+                for (int i = 0; i < move.Length; i++)
                 {
                     int Index = backupJob.backupIndex[i];
                     string sourceFile = backupJob.backupList[Index].fileSource;
                     string targetFile = backupJob.backupList[Index].fileTarget;
                     string saveType = backupJob.backupList[Index].type;
-                    backupJob.MoveFileDirectory(sourceFile, targetFile, saveType);
+                    //backupJob.MoveFileDirectory(sourceFile, targetFile, saveType);
+
+                    move[i] = new Thread (new ThreadStart(() =>backupJob.MoveFileDirectory(sourceFile, targetFile, saveType)));
+                    move[i].Name = i.ToString();
+                    move[i].Start();
                 }
             }
 
