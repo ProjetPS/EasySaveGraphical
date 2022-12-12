@@ -4,16 +4,16 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text;
 using System.Xml.Linq;
+using System.Diagnostics;
 
 namespace EasySaveGraphic
 {
-    public class StateLogType
+    class LogType
     {
         public static void JSONType()
         {
-            var stateLog = new StateInfo()  //JSON informations
+            var Log = new LogInfo()  //JSON informations
             {
-                NbFilesLeftToDo = 0,
             };
 
             var options = new JsonSerializerOptions
@@ -21,8 +21,8 @@ namespace EasySaveGraphic
                 WriteIndented = true,
                 Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,  //Transform to UTF-8
             };
-            string jsonString = JsonSerializer.Serialize(stateLog, options);
-            string path = "C:/temp/statelog.json";
+            string jsonString = JsonSerializer.Serialize(Log, options);
+            string path = "C:/temp/log.json";
 
             try
             {
@@ -60,28 +60,25 @@ namespace EasySaveGraphic
 
         public static void XMLType()
         {
-            var stateLog = new StateInfo()  //XML informations
+            var Log = new LogInfo()  //JSON informations
             {
-                NbFilesLeftToDo = 0,
             };
             XDocument document = new XDocument
     (
         new XDeclaration("1.0", "utf-8", "yes"),
-        new XComment("XML for stateLog"),
+        new XComment("XML for Log"),
 
-        new XElement("statelog",
+        new XElement("log",
             new XElement("data",
-                new XElement("backupname", stateLog.BackupName),
-                new XElement("sourcefilepath", stateLog.SourceFilePath),
-                new XElement("targetfilepath", stateLog.TargetFilePath),
-                new XElement("time", stateLog.Time),
-                new XElement("state", stateLog.State),
-                new XElement("totalfilestocopy", stateLog.TotalFilesToCopy.ToString()),
-                new XElement("totalfilesize", stateLog.TotalFileSize.ToString()),
-                new XElement("nbfileslefttodo", stateLog.NbFilesLeftToDo.ToString()),
-                new XElement("progression", stateLog.Progression.ToString())))
+                new XElement("backupname", Log.BackupName),
+                new XElement("sourcefilepath", Log.SourceFilePath),
+                new XElement("targetfilepath", Log.TargetFilePath),
+                new XElement("destpath", Log.DestPath),
+                new XElement("time", Log.Time),
+                new XElement("filesize", Log.FileSize.ToString()),
+                new XElement("transferttime", Log.FileTransfertTime.ToString())))
     );
-            string path = "C:/temp/statelog.xml";
+            string path = "C:/temp/log.xml";
             document.Save(path);
         }
 
@@ -100,13 +97,14 @@ namespace EasySaveGraphic
                 XMLType();
             }
         }
-
     }
-    public class StateInfo
+
+    public class LogInfo
     {
         public string BackupName => backupJob.backupList[backupJob.Index].name;
         public string SourceFilePath => backupJob.backupList[backupJob.Index].fileSource;
         public string TargetFilePath => backupJob.backupList[backupJob.Index].fileTarget;
+        public string DestPath = "";
         public string Time
         {
             get
@@ -115,23 +113,7 @@ namespace EasySaveGraphic
                 return date.ToString();
             }
         }
-        public string State => NbFilesLeftToDo == 0 ? "END" : "ACTIVE";   //Show END if no files are moved, else show ACTIVE
-        public int TotalFilesToCopy
-        {
-            get
-            {
-                try
-                {
-                    int Size = Directory.GetFiles(SourceFilePath).Length;   //Count number of files in a directory
-                    return Size;
-                }
-                catch
-                {
-                    return 1;   //Return 1 if a file is moved, and not a directory
-                }
-            }
-        }
-        public int TotalFileSize  //In octets
+        public int FileSize  //In octets
         {
             get
             {
@@ -146,7 +128,14 @@ namespace EasySaveGraphic
                 }
             }
         }
-        public int NbFilesLeftToDo { get; set; }
-        public double Progression => (double)Decimal.Divide(NbFilesLeftToDo, TotalFilesToCopy); //Tends from 1 to 0, 0 corresponds to finished processing
+
+        public int FileTransfertTime
+        {
+            get
+            {
+                return 0;
+            }
+        }
     }
 }
+
