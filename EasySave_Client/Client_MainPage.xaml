@@ -6,9 +6,14 @@
       xmlns:local="clr-namespace:EasySave_Client"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Client_MainPage">
+      Title="Client_MainPage"
+      Background="#E8DFCA"
+      MinHeight="300"
+      MinWidth="400">
 
-    <Grid>
-        
-    </Grid>
+
+    <StackPanel HorizontalAlignment="Center" Width="Auto" Margin="0,198,0,198">
+        <ProgressBar x:Name="Client_ProgressBar" Height="20" Width="348"/>
+        <TextBox x:Name="Client_TextRecieved" Width="348" Height="30"/>
+    </StackPanel>
 </Page>

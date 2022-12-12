@@ -7,14 +7,14 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace EasySaveGraphic
 {
     [System.Serializable] //Allow to serialyze an object 
-    public class backupJob
+    public class BackupJob
     {
         /// --------------- Attributes --------------- ///
         public string name;
         public string fileSource;
         public string fileTarget;
         public string type;
-        public backupJob(string name, string fileSource, string fileTarget, string type) //Constructor
+        public BackupJob(string name, string fileSource, string fileTarget, string type) //Constructor
         {
             this.name = name;
             this.fileSource = fileSource;
@@ -22,13 +22,13 @@ namespace EasySaveGraphic
             this.type = type;
         }
 
-        public static List<backupJob> backupList = new List<backupJob>(); //List of backups
+        public static List<BackupJob> backupList = new List<BackupJob>(); //List of backups
         public static string directoryPath = @"C:/temp/";
         public static string filePath = @"backupJobs.txt"; //Path of the list save file, if EasySave restarted, backup jobs are still usable.
         public static int Index;
 
         /// --------------- Methods --------------- ///
-        public static void Save(List<backupJob> backup, string filePath) //Allow to save the list
+        public static void Save(List<BackupJob> backup, string filePath) //Allow to save the list
         {
 
             //Create & open the directory
@@ -46,7 +46,7 @@ namespace EasySaveGraphic
             fs.Close();
         }
 
-        public static List<backupJob> Open(string filePath) //Allow to open the list
+        public static List<BackupJob> Open(string filePath) //Allow to open the list
         {
             //If file exist
             if (File.Exists(filePath))
@@ -61,7 +61,7 @@ namespace EasySaveGraphic
                     //Unserialyze object
                     BinaryFormatter bf = new BinaryFormatter();
                     //Recover object
-                    backupList = (List<backupJob>)bf.Deserialize(fs);
+                    backupList = (List<BackupJob>)bf.Deserialize(fs);
                 }
                 catch (Exception e)
                 {
@@ -79,7 +79,7 @@ namespace EasySaveGraphic
             }
 
             //Return our list
-            return backupJob.backupList;
+            return BackupJob.backupList;
         }
         public static void MoveFileDirectory(string sourceFile, string targetFile, string saveType) //Method that move a file/directory to the right place
         {

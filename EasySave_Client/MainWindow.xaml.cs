@@ -23,6 +23,8 @@ namespace EasySave_Client
         public MainWindow()
         {
             InitializeComponent();
+            Client_MainPage ClientWPF = new Client_MainPage();
+            Content = ClientWPF;
         }
     }
 }

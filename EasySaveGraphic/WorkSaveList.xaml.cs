@@ -36,13 +36,13 @@ namespace EasySaveGraphic
 
         public void WorkSave_Loaded(object sender, RoutedEventArgs e)
         {
-            //Print the backupJob List
-            backupJob.Open(backupJob.filePath);
+            //Print the BackupJob List
+            BackupJob.Open(BackupJob.filePath);
 
             Execute.backCollection = new ObservableCollection<Backup> { };
-            for (int i = 0; i < backupJob.backupList.Count; i++)
+            for (int i = 0; i < BackupJob.backupList.Count; i++)
             {
-                Execute.backCollection.Add(new Execute.Backup { BackupName = backupJob.backupList[i].name, BackupSource = backupJob.backupList[i].fileSource, BackupTarget = backupJob.backupList[i].fileTarget, BackupType = backupJob.backupList[i].type });
+                Execute.backCollection.Add(new Execute.Backup { BackupName = BackupJob.backupList[i].name, BackupSource = BackupJob.backupList[i].fileSource, BackupTarget = BackupJob.backupList[i].fileTarget, BackupType = BackupJob.backupList[i].type });
             }
             DataContext =
                 (from i in Execute.backCollection
@@ -69,16 +69,13 @@ namespace EasySaveGraphic
                 window.Title = "EasySave - Main menu";
                 window.Content = goBack;
             }
-
-
         }
 
         //Change all content displayed in FR
         private void ChangetoFR()
         {
             WorkSaveTitle.Content = "Mes sauvegardes";
+            Goback_btn.ToolTip = "Retour";
         }
-
-
     }
 }

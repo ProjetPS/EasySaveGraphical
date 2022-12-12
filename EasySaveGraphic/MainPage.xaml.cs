@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace EasySaveGraphic
@@ -174,14 +175,17 @@ namespace EasySaveGraphic
 
         private void ClientRemote_Click(object sender, RoutedEventArgs e)
         {
-            StartServerSocketAsync();
+            // Start Client
             Process client = new Process();
             client.StartInfo.FileName = @"..\..\..\..\EasySave_Client\bin\Release\netcoreapp3.1\EasySave_Client.exe";
             client.Start();
-            
+
+            // Create socket in a thread
+            Thread serverRead = new Thread(new ThreadStart(MainPage.StartServerSocketAsync));
+            serverRead.Start(); 
         }
 
-        private static async Task StartServerSocketAsync()
+        private static async void StartServerSocketAsync()
         {
             IPAddress ipAddr = IPAddress.Parse("127.0.0.1");
             IPEndPoint ipEndPoint = new IPEndPoint(ipAddr, 11_000);
@@ -195,8 +199,11 @@ namespace EasySaveGraphic
             listener.Listen(100);
 
             var handler = await listener.AcceptAsync();
+            int i = 0;
             while (true)
             {
+                Thread.Sleep(2000);
+                i++;
                 // Receive message.
                 var buffer = new byte[1_024];
                 var received = await handler.ReceiveAsync(buffer, SocketFlags.None);
@@ -208,10 +215,9 @@ namespace EasySaveGraphic
                     Console.WriteLine(
                         $"Socket server received message: \"{response.Replace(eom, "")}\"");
 
-                    var ackMessage = "<|ACK|>"; // "<|ACK|>"
+                    var ackMessage = Convert.ToString(i); // "<|ACK|>"
                     var echoBytes = Encoding.UTF8.GetBytes(ackMessage);
                     await handler.SendAsync(echoBytes, 0);
-                    break;
                 }
             }
         }

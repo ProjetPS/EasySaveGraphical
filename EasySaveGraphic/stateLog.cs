@@ -104,9 +104,9 @@ namespace EasySaveGraphic
     }
     public class StateInfo
     {
-        public string BackupName => backupJob.backupList[backupJob.Index].name;
-        public string SourceFilePath => backupJob.backupList[backupJob.Index].fileSource;
-        public string TargetFilePath => backupJob.backupList[backupJob.Index].fileTarget;
+        public string BackupName => BackupJob.backupList[BackupJob.Index].name;
+        public string SourceFilePath => BackupJob.backupList[BackupJob.Index].fileSource;
+        public string TargetFilePath => BackupJob.backupList[BackupJob.Index].fileTarget;
         public string Time
         {
             get

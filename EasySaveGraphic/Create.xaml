@@ -27,7 +27,7 @@
             <ComboBoxItem>Directory</ComboBoxItem>
         </ComboBox>
         <Button Name="Create_btn" Content="Create" HorizontalAlignment="Left" Margin="513,142,0,0" Grid.Row="1" VerticalAlignment="Top" Height="54" Width="107" FontFamily="Segoe UI Black" Background="#F5EFE6" Foreground="#7895B2" RenderTransformOrigin="1.72,0.655" Click="CreateBackupJob"/>
-        <Button FontFamily="Segoe MDL2 Assets" Content="&#xE830;" HorizontalAlignment="Left" Margin="26,23,0,0" VerticalAlignment="Top" Click="GoBack" Height="24" Width="34"/>
+        <Button Name="Goback_btn" FontFamily="Segoe MDL2 Assets" ToolTip="Go back" Content="&#xE830;" HorizontalAlignment="Left" Margin="26,23,0,0" VerticalAlignment="Top" Click="GoBack" Height="24" Width="34"/>
         <Button Content="..." HorizontalAlignment="Left" Margin="459,46,0,0" Grid.Row="1" VerticalAlignment="Top" Click="findSourceFile" Width="31"/>
         <Button Content="..." HorizontalAlignment="Left" Margin="459,101,0,0" Grid.Row="1" VerticalAlignment="Top" Click="findTargetFile" Width="31"/>
 

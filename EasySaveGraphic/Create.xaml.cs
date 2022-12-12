@@ -38,6 +38,7 @@ namespace EasySaveGraphic
         {
             CreateTitle.Content = "Créer un travail de sauvegarde";
             Create_btn.Content = "Créer";
+            Goback_btn.ToolTip = "Retour";
         }
 
         private void CreateBackupJob(object sender, RoutedEventArgs e)
@@ -47,10 +48,10 @@ namespace EasySaveGraphic
             string fileTarget = backupJobTarget.Text;
             string type = backupJobType.SelectedItem.ToString();
 
-            backupJob save = new backupJob(name, fileSource, fileTarget, type);
-            backupJob.Open(backupJob.filePath);
-            backupJob.backupList.Add(save);
-            backupJob.Save(backupJob.backupList, backupJob.filePath);
+            BackupJob save = new BackupJob(name, fileSource, fileTarget, type);
+            BackupJob.Open(BackupJob.filePath);
+            BackupJob.backupList.Add(save);
+            BackupJob.Save(BackupJob.backupList, BackupJob.filePath);
         }
 
 

@@ -48,14 +48,14 @@ namespace EasySaveGraphic
 
         private void DataGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            //Print the backupJob List
-            backupJob.Open(backupJob.filePath);
-            //Console.WriteLine(i + " - " + backupJob.backupList[i].name);
+            //Print the BackupJob List
+            BackupJob.Open(BackupJob.filePath);
+            //Console.WriteLine(i + " - " + BackupJob.backupList[i].name);
 
             backCollection = new ObservableCollection<Backup> { };
-            for (int i = 0; i < backupJob.backupList.Count; i++)
+            for (int i = 0; i < BackupJob.backupList.Count; i++)
             {
-                backCollection.Add(new Backup { BackupName = backupJob.backupList[i].name, BackupSource = backupJob.backupList[i].fileSource, BackupTarget = backupJob.backupList[i].fileTarget, BackupType = backupJob.backupList[i].type });
+                backCollection.Add(new Backup { BackupName = BackupJob.backupList[i].name, BackupSource = BackupJob.backupList[i].fileSource, BackupTarget = BackupJob.backupList[i].fileTarget, BackupType = BackupJob.backupList[i].type });
             }
 
 
@@ -83,11 +83,11 @@ namespace EasySaveGraphic
 
             if (canExecute == true)
             {
-                string sourceFile = backupJob.backupList[backupJob.Index].fileSource;
-                string targetFile = backupJob.backupList[backupJob.Index].fileTarget;
-                string saveType = backupJob.backupList[backupJob.Index].type;
+                string sourceFile = BackupJob.backupList[BackupJob.Index].fileSource;
+                string targetFile = BackupJob.backupList[BackupJob.Index].fileTarget;
+                string saveType = BackupJob.backupList[BackupJob.Index].type;
                 LogType.CallType();
-                backupJob.MoveFileDirectory(sourceFile, targetFile, saveType);
+                BackupJob.MoveFileDirectory(sourceFile, targetFile, saveType);
             }
 
         }
@@ -122,7 +122,7 @@ namespace EasySaveGraphic
             DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
             DataGridCell RowColumn = dataGrid.Columns[0].GetCellContent(row).Parent as DataGridCell;
             CellValue = RowColumn.Content.ToString();
-            backupJob.Index = dataGrid.SelectedIndex;
+            BackupJob.Index = dataGrid.SelectedIndex;
 
         }
 
@@ -130,6 +130,7 @@ namespace EasySaveGraphic
         {
             ExecuteTitle.Content = "Executer un travail de sauvegarde";
             Execute_btn.Content = "Executer";
+            Goback_btn.ToolTip = "Retour";
         }
     }
 }
