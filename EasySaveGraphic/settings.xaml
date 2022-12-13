@@ -11,8 +11,8 @@
     <Canvas Background="#E8DFCA" Margin="0,0,0,-6">
         <Label x:Name="CreateTitle"  Content="Settings" FontSize = "38" Width="260" Height="90" FontFamily="Segoe UI Black" Foreground="#AEBDCA" Canvas.Left="329" Canvas.Top="35"/>
         <Label Content="Extensions :" Margin="150,146,0,0" FontSize="20" Width="135" Height="50" FontFamily="Segoe UI Black" Foreground="#7895B2" Canvas.Left="-42" Canvas.Top="-4"/>
-        <Label x:Name="NameLT" Content="Log Type : " Margin="469,67,0,0" FontSize="20" Width="135" Height="50" FontFamily="Segoe UI Black" Foreground="#7895B2" Grid.Row="1" RenderTransformOrigin="-0.022,4.428" Canvas.Top="239"/>
-        <ListBox x:Name="ListExt" Margin="156,194,497,35" Grid.RowSpan="2" Canvas.Left="-19" Height="219">
+        <Label x:Name="NameLT" Content="Log Type : " Margin="469,67,0,0" FontSize="20" Width="135" Height="50" FontFamily="Segoe UI Black" Foreground="#7895B2" Grid.Row="1" RenderTransformOrigin="-0.022,4.428" Canvas.Top="254"/>
+        <ListBox x:Name="ListExt" Margin="156,194,497,35" Grid.RowSpan="2" Canvas.Left="-27" Height="115">
             <CheckBox Content=".png"/>
             <CheckBox Content=".jpeg"/>
             <CheckBox Content=".txt"/>
@@ -28,7 +28,7 @@
             <CheckBox Content=".cs"/>
             <CheckBox Content=".exe"/>
         </ListBox>
-        <ComboBox x:Name="TypeLog" Margin="469,122,0,0" Grid.Row="1" Width="120" Canvas.Top="228">
+        <ComboBox x:Name="TypeLog" Margin="469,122,0,0" Grid.Row="1" Width="120" Canvas.Top="252">
             <ComboBoxItem x:Name="LabelJSON" Content="JSON"></ComboBoxItem>
             <ComboBoxItem x:Name="LabelXML" Content="XML"></ComboBoxItem>
         </ComboBox>
@@ -37,5 +37,7 @@
         <TextBox x:Name="ShowDialog" HorizontalAlignment="Left" Margin="450,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="158" IsEnabled="False" Grid.RowSpan="2"/>
         <Button x:Name="SaveButton" Content="Save" Margin="694,192,0,10" Click="Button_Save" Width="90" Background="#E8DFCA" Grid.Row="1" Canvas.Left="-16" Canvas.Top="228"/>
         <Button FontFamily="Segoe MDL2 Assets" Content="&#xE830;" HorizontalAlignment="Left" Margin="26,23,0,0" VerticalAlignment="Top" Click="GoBack" Height="24" Width="34"/>
+        <Label x:Name="Limit_file" Content="File Limit (in ko) : " FontSize="20" Width="188" Height="50" FontFamily="Segoe UI Black" Foreground="#7895B2" RenderTransformOrigin="-0.022,4.428" Canvas.Top="347" Canvas.Left="83"/>
+        <TextBox x:Name="Enter_Limit" TextWrapping="Wrap" Width="158" Canvas.Left="89" Canvas.Top="388"/>
     </Canvas>
 </Page>

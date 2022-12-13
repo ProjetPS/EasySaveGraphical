@@ -26,6 +26,7 @@ namespace EasySaveGraphic
         public static string directoryPath = @"C:/temp/";
         public static string filePath = @"backupJobs.txt"; //Path of the list save file, if EasySave restarted, backup jobs are still usable.
         public static int Index;
+        public static List<int> backupIndex = new List<int>();
 
         /// --------------- Methods --------------- ///
         public static void Save(List<backupJob> backup, string filePath) //Allow to save the list
