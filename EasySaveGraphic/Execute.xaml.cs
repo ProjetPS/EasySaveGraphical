@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.ComponentModel;
 using System.IO;
+using System.Text.Json;
 
 namespace EasySaveGraphic
 {
@@ -67,7 +68,11 @@ namespace EasySaveGraphic
         private void ExecuteSave(object sender, DoWorkEventArgs e)
         {
             bool canExecute = false;
-            Process[] processes = Process.GetProcessesByName("notepad"); // Is jobSoftware open ?
+            string settingsFile = @"C:/temp/settings.json";
+            string jsonString = File.ReadAllText(settingsFile);
+            Config stateInfo = JsonSerializer.Deserialize<Config>(jsonString)!;
+            string jobSoftware = stateInfo.JobSoftware;
+            Process[] processes = Process.GetProcessesByName(jobSoftware); // Is jobSoftware open ?
 
             if (processes.Length == 0)
             {
