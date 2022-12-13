@@ -109,6 +109,17 @@ namespace EasySaveGraphic
                     watch.Reset(); //free memory
                     StateLogType.CallType(name, sourceFile, targetFile, size); //Create StateLog
                     }
+                    else
+                    {
+                        if (isLangFR)
+                        {
+                            MessageBox.Show("Votre fichier dépasse la taille limite fixée dans les paramètres.", "Attention", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Your file exceeds the size limit defined in the settings.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+                    }
 
                 }
                 backupJob.backupIndex.Clear(); //Clear the selected rows array at the end
