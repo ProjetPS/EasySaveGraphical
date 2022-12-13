@@ -93,11 +93,8 @@ namespace EasySaveGraphic
                 canExecute = false;
             }
 
-
-
-=======
             // If jobSoftware close, then we can execute our save
->>>>>>> 9a4cf20d8ecad4ee4523c86ece831d2ba87baaaa
+
             if (canExecute == true)
             {
                 var watch = new Stopwatch();
