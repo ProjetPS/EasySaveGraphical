@@ -23,6 +23,10 @@ namespace EasySaveGraphic
 
         BackgroundWorker worker = new BackgroundWorker();
 
+        public bool pause = false;
+
+        public bool stop = false;
+
 
         public Execute(bool isFR)
         {
@@ -195,6 +199,25 @@ namespace EasySaveGraphic
 
                 while ((readByte = fsin.Read(bt, 0, bt.Length)) > 0)  //Read progression
                 {
+                    while (pause)
+                    {
+                        Thread.Sleep(1000);
+
+                        if (stop)
+                        {
+                            fsout.Close();
+                            File.Delete(targetFile);
+                            MainPage goBack = new MainPage(true);
+                        }
+                    }
+
+                    if (stop)
+                    {
+                        fsin.Close();
+                        fsout.Close();
+                        File.Delete(targetFile);
+                        break;
+                    }
                     fsout.Write(bt, 0, readByte);
                     worker.ReportProgress((int)(fsin.Position * 100 / fsin.Length));
                 }
@@ -208,6 +231,19 @@ namespace EasySaveGraphic
             }
         }
 
+        private void Resume_Click(object sender, RoutedEventArgs e)
+        {
+            pause = false;
+        }
 
+        private void Pause_Click(object sender, RoutedEventArgs e)
+        {
+            pause = true;
+        }
+
+        private void Stop_Click(object sender, RoutedEventArgs e)
+        {
+            stop = true;
+        }
     }
 }
