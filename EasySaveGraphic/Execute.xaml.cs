@@ -24,20 +24,20 @@ namespace EasySaveGraphic
     /// </summary>
     public partial class Execute : Page
     {
-
         public static string CellValue; // Recover datagridValue
-        private bool isLangFR = false;
 
-        public Execute(bool isFR) 
+        private bool isLangFR = false;
+        public Execute(bool isFR)
         {
             InitializeComponent();
 
-             if (isFR) // VF
-             {
-                 ChangetoFR();
-                 this.isLangFR = true;
-             }
+            if (isFR) // VF
+            {
+                ChangetoFR();
+                this.isLangFR = true;
+            }
         }
+
         public class Backup // Backups list to display
         {
             public string BackupName { get; set; }
@@ -48,24 +48,34 @@ namespace EasySaveGraphic
 
         public static ObservableCollection<Backup> backCollection; //Backup Collection
 
-        private void DataGrid_Loaded(object sender, RoutedEventArgs e)  //Display saves into datagrid
+        private void BackupGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //Recover Rows indexes selected
+            DataGrid dataGrid = sender as DataGrid;
+            /*DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
+            DataGridCell RowColumn = dataGrid.Columns[0].GetCellContent(row).Parent as DataGridCell;
+            CellValue = RowColumn.Content.ToString();*/
+            //backupJob.Index = dataGrid.SelectedIndex;
+            backupJob.backupIndex.Add(dataGrid.SelectedIndex);
+        }
+        private void ChangetoFR() // VF
+        {
+            ExecuteTitle.Content = "Executer une sauvegarde";
+            ExecuteButton.Content = "Executer";
+        }
+        public void DataGrid_Loaded(object sender, RoutedEventArgs e) //Display saves into datagrid
         {
             //Print the backupJob List
             backupJob.Open(backupJob.filePath);
-            //Console.WriteLine(i + " - " + backupJob.backupList[i].name);
 
             backCollection = new ObservableCollection<Backup> { }; //Filled collection with list elements
             for (int i = 0; i < backupJob.backupList.Count; i++)
             {
                 backCollection.Add(new Backup { BackupName = backupJob.backupList[i].name, BackupSource = backupJob.backupList[i].fileSource, BackupTarget = backupJob.backupList[i].fileTarget, BackupType = backupJob.backupList[i].type });
             }
-
-
-
             DataContext =
                 (from i in backCollection
                  select new { i.BackupName, i.BackupSource, i.BackupTarget, i.BackupType }).ToList();
-
         }
 
         private void ExecuteSave(object sender, RoutedEventArgs e)
@@ -85,65 +95,48 @@ namespace EasySaveGraphic
             // If jobSoftware close, then we can execute our save
             if (canExecute == true)
             {
+
                 Thread[] moves = new Thread[backupJob.backupIndex.Count];
                 for (int i = 0; i < moves.Length; i++)
                 {
-                    string sourceFile = backupJob.backupList[backupJob.Index].fileSource;
-                    string targetFile = backupJob.backupList[backupJob.Index].fileTarget;
-                    string saveType = backupJob.backupList[backupJob.Index].type;
-                    LogType.CallType();
-                    StateLogType.CallType();
+                    int Index = backupJob.backupIndex[i];
+                    string sourceFile = backupJob.backupList[Index].fileSource;
+                    string targetFile = backupJob.backupList[Index].fileTarget;
+                    string saveType = backupJob.backupList[Index].type;
+
+                    //LogType.CallType();
+                    //StateLogtype.CallType();
                     //backupJob.MoveFileDirectory(sourceFile, targetFile, saveType);
 
                     Thread move = new Thread(new ThreadStart(() => backupJob.MoveFileDirectory(sourceFile, targetFile, saveType)));
                     move.Name = i.ToString();
                     move.Start();
-                    //Thread.Sleep(6000);
+                    Thread.Sleep(6000);
                 }
                 backupJob.backupIndex.Clear(); //Clear the selected rows array at the end
             }
-
         }
-
 
         private void GoBack(object sender, RoutedEventArgs e)
         {
             // Go back to main page
             var window = (Mainwindow)Application.Current.MainWindow;
 
-              if (this.isLangFR)
-              {
-                  //Go back in FR language
-                  MainPage goBack = new MainPage(true);
-                  window.Title = "EasySave - Menu principal";
-                  window.Content = goBack;
+            if (this.isLangFR)
+            {
+                //Go back in FR language
+                MainPage goBack = new MainPage(true);
+                window.Title = "EasySave - Menu principal";
+                window.Content = goBack;
 
-              }
-              else
-              {
-                  //Go back in EN language
-                  MainPage goBack = new MainPage();
-                  window.Title = "EasySave - Main Menu";
-                  window.Content = goBack;
-              }
-
-        }
-
-        private void BackupGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //Recover Rows indexes selected
-            DataGrid dataGrid = sender as DataGrid;
-            DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
-            DataGridCell RowColumn = dataGrid.Columns[0].GetCellContent(row).Parent as DataGridCell;
-            CellValue = RowColumn.Content.ToString();
-            backupJob.Index = dataGrid.SelectedIndex;
-
-        }
-
-        private void ChangetoFR() // VF
-        {
-            ExecuteTitle.Content = "Executer un travail de sauvegarde";
-            ExecuteButton.Content = "Executer";
+            }
+            else
+            {
+                //Go back in EN language
+                MainPage goBack = new MainPage();
+                window.Title = "EasySave - Main menu";
+                window.Content = goBack;
+            }
         }
 
         private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -153,9 +146,6 @@ namespace EasySaveGraphic
 
             //Affichage de la progression sur un label
             percentage.Content = progressBar.Value.ToString() + "%";
-
-
-
         }
     }
 }
