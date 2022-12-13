@@ -86,6 +86,14 @@ namespace EasySaveGraphic
             else if (processes.Length == 1)
             {
                 canExecute = false;
+                if (isLangFR)
+                {
+                    MessageBox.Show("Le logiciel métier est en cours d'exécution.", "Attention", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
+                {
+                    MessageBox.Show("JobSoftware is running.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
 
             // If jobSoftware close, then we can execute our save
