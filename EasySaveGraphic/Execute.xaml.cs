@@ -16,6 +16,7 @@ using System.Linq;
 using System.Diagnostics;
 using System.Threading;
 using System.ComponentModel;
+using System.IO;
 
 namespace EasySaveGraphic
 {
@@ -28,9 +29,19 @@ namespace EasySaveGraphic
         public static string CellValue; // Recover datagridValue
 
         private bool isLangFR = false;
-        public Execute(bool isFR) 
+
+        BackgroundWorker worker = new BackgroundWorker();
+
+
+        public Execute(bool isFR)
         {
             InitializeComponent();
+
+            //Progress Bar tools
+            worker.WorkerSupportsCancellation = true;
+            worker.WorkerReportsProgress = true;
+            worker.ProgressChanged += worker_ProgressChanged;
+            worker.DoWork += ExecuteSave; ;
 
             if (isFR) // VF
             {
@@ -55,43 +66,20 @@ namespace EasySaveGraphic
         {
             //Recover Rows indexes selected
             DataGrid dataGrid = sender as DataGrid;
-            /*DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
-            DataGridCell RowColumn = dataGrid.Columns[0].GetCellContent(row).Parent as DataGridCell;
-            CellValue = RowColumn.Content.ToString();*/
-            //backupJob.Index = dataGrid.SelectedIndex;
             backupJob.backupIndex.Add(dataGrid.SelectedIndex);
-
         }
         private void ChangetoFR() // VF
         {
             ExecuteTitle.Content = "Executer une sauvegarde";
             ExecuteButton.Content = "Executer";
         }
-        public void DataGrid_Loaded(object sender, RoutedEventArgs e) //Display saves into datagrid
-        {
-            //Print the backupJob List
-            backupJob.Open(backupJob.filePath);
 
-            backCollection = new ObservableCollection<Backup> { }; //Filled collection with list elements
-            for (int i = 0; i < backupJob.backupList.Count; i++)
-            {
-                backCollection.Add(new Backup { BackupName = backupJob.backupList[i].name, BackupSource = backupJob.backupList[i].fileSource, BackupTarget = backupJob.backupList[i].fileTarget, BackupType = backupJob.backupList[i].type });
-            }
-
-
-
-            DataContext =
-                (from i in backCollection
-                 select new { i.BackupName, i.BackupSource, i.BackupTarget, i.BackupType }).ToList();
-
-        }
-
-        private void ExecuteSave(object sender, RoutedEventArgs e)
+        private void ExecuteSave(object sender, DoWorkEventArgs e)
         {
             bool canExecute = false;
             Process[] processes = Process.GetProcessesByName("notepad"); // Is jobSoftware open ?
 
-            if(processes.Length == 0)
+            if (processes.Length == 0)
             {
                 canExecute = true;
             }
@@ -116,7 +104,7 @@ namespace EasySaveGraphic
                     //StateLogtype.CallType();
                     //backupJob.MoveFileDirectory(sourceFile, targetFile, saveType);
 
-                    Thread move = new Thread(new ThreadStart(() => backupJob.MoveFileDirectory(sourceFile, targetFile, saveType)));
+                    Thread move = new Thread(new ThreadStart(() => MoveFileDirectory(sourceFile, targetFile, saveType)));
                     move.Name = i.ToString();
                     move.Start();
                     Thread.Sleep(6000);
@@ -125,7 +113,6 @@ namespace EasySaveGraphic
             }
 
         }
-
 
         private void GoBack(object sender, RoutedEventArgs e)
         {
@@ -151,16 +138,61 @@ namespace EasySaveGraphic
 
         }
 
+        private void RunProgressbar(object sender, RoutedEventArgs e)
+        {
+
+            worker.RunWorkerAsync();
+        }
+
         private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            //initialisation de la barre de progression avec le pourcentage de progression
+            //Init progressBar
             progressBar.Value = e.ProgressPercentage;
 
-            //Affichage de la progression sur un label
+            //Display progression
             percentage.Content = progressBar.Value.ToString() + "%";
 
+        }
+        public void DataGrid_Loaded(object sender, RoutedEventArgs e) //Display saves into datagrid
+        {
+            //Print the backupJob List
+            backupJob.Open(backupJob.filePath);
+
+            backCollection = new ObservableCollection<Backup> { }; //Filled collection with list elements
+            for (int i = 0; i < backupJob.backupList.Count; i++)
+            {
+                backCollection.Add(new Backup { BackupName = backupJob.backupList[i].name, BackupSource = backupJob.backupList[i].fileSource, BackupTarget = backupJob.backupList[i].fileTarget, BackupType = backupJob.backupList[i].type });
+            }
+
+            DataContext =
+                (from i in backCollection
+                 select new { i.BackupName, i.BackupSource, i.BackupTarget, i.BackupType }).ToList();
+
+        }
 
 
+        public void MoveFileDirectory(string sourceFile, string targetFile, string saveType) //Method that move a file/directory to the right place
+        {
+            if (saveType == "System.Windows.Controls.ComboBoxItem : File" || saveType == "System.Windows.Controls.ComboBoxItem : Fichier") //If user wants to move a file
+            {
+                FileStream fsout = new FileStream(targetFile, FileMode.Create);
+                FileStream fsin = new FileStream(sourceFile, FileMode.Open);
+                byte[] bt = new byte[1048756];
+                int readByte;
+
+                while ((readByte = fsin.Read(bt, 0, bt.Length)) > 0)  //Read progression
+                {
+                    fsout.Write(bt, 0, readByte);
+                    worker.ReportProgress((int)(fsin.Position * fsin.Length));
+                }
+                fsin.Close();
+                File.Delete(sourceFile); //Delete source file
+                fsout.Close();
+            }
+            else if (saveType == "System.Windows.Controls.ComboBoxItem : Directory" || saveType == "System.Windows.Controls.ComboBoxItem : Répertoire") //If user wants to move a directory
+            {
+                System.IO.Directory.Move(sourceFile, targetFile);
+            }
         }
 
 

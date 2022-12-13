@@ -83,16 +83,17 @@ namespace EasySaveGraphic
             //Return our list
             return backupJob.backupList;
         }
-        public static void MoveFileDirectory(string sourceFile, string targetFile, string saveType) //Method that move a file/directory to the right place
+        /*public static void MoveFileDirectory(string sourceFile, string targetFile, string saveType) //Method that move a file/directory to the right place
         {
             if (saveType == "System.Windows.Controls.ComboBoxItem : File" || saveType == "System.Windows.Controls.ComboBoxItem : Fichier") //If user wants to move a file
             {
                 System.IO.File.Move(sourceFile, targetFile);
+               
             }
             else if (saveType == "System.Windows.Controls.ComboBoxItem : Directory" || saveType == "System.Windows.Controls.ComboBoxItem : Répertoire") //If user wants to move a directory
             {
                 System.IO.Directory.Move(sourceFile, targetFile);
             }
-        }
+        }*/
     }
 }
