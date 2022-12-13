@@ -72,6 +72,7 @@ namespace EasySaveGraphic
             string jsonString = File.ReadAllText(settingsFile);
             Config stateInfo = JsonSerializer.Deserialize<Config>(jsonString)!;
             string jobSoftware = stateInfo.JobSoftware;
+            int limitSizeFile = stateInfo.LimitSize;
             Process[] processes = Process.GetProcessesByName(jobSoftware); // Is jobSoftware open ?
 
             if (processes.Length == 0)
@@ -97,16 +98,18 @@ namespace EasySaveGraphic
                     string saveType = backupJob.backupList[Index].type;
                     int size = (int)new FileInfo(sourceFile).Length;
 
-                    //backupJob.MoveFileDirectory(sourceFile, targetFile, saveType);
-
+                    if (size <= limitSizeFile) //check if size of file isn't superior of the limit
+                    {
                     Thread move = new Thread(new ThreadStart(() => MoveFileDirectory(sourceFile, targetFile, saveType)));
                     move.Name = i.ToString();
-                    watch.Start();
+                    watch.Start(); //start counting
                     move.Start();
-                    LogType.CallType(name, sourceFile, targetFile, watch.ElapsedMilliseconds, size);
-                    watch.Reset();
-                    StateLogType.CallType(name, sourceFile, targetFile, size);
-                    //Thread.Sleep(6000);
+                    watch.Stop(); //stop counting
+                    LogType.CallType(name, sourceFile, targetFile, watch.ElapsedMilliseconds, size); //Create Log
+                    watch.Reset(); //free memory
+                    StateLogType.CallType(name, sourceFile, targetFile, size); //Create StateLog
+                    }
+
                 }
                 backupJob.backupIndex.Clear(); //Clear the selected rows array at the end
             }
@@ -182,7 +185,7 @@ namespace EasySaveGraphic
                 while ((readByte = fsin.Read(bt, 0, bt.Length)) > 0)  //Read progression
                 {
                     fsout.Write(bt, 0, readByte);
-                    worker.ReportProgress((int)(fsin.Position * fsin.Length));
+                    worker.ReportProgress((int)(fsin.Position * 100 / fsin.Length));
                 }
                 fsin.Close();
                 File.Delete(sourceFile); //Delete source file
