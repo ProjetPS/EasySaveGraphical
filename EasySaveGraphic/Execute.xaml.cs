@@ -224,7 +224,7 @@ namespace EasySaveGraphic
                         fsin.Close();
                         fsout.Close();
                         File.Delete(targetFile);
-                        break;
+                        return;
                     }
                     fsout.Write(bt, 0, readByte);
                     worker.ReportProgress((int)(fsin.Position * 100 / fsin.Length));
