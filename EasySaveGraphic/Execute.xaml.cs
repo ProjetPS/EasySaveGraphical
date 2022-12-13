@@ -16,6 +16,7 @@ using System.Linq;
 using System.Diagnostics;
 using System.Threading;
 using System.ComponentModel;
+using System.IO;
 
 namespace EasySaveGraphic
 {
@@ -99,22 +100,28 @@ namespace EasySaveGraphic
 >>>>>>> 9a4cf20d8ecad4ee4523c86ece831d2ba87baaaa
             if (canExecute == true)
             {
-
+                var watch = new Stopwatch();
                 Thread[] moves = new Thread[backupJob.backupIndex.Count];
                 for (int i = 0; i < moves.Length; i++)
                 {
                     int Index = backupJob.backupIndex[i];
+                    string name = backupJob.backupList[Index].name;
                     string sourceFile = backupJob.backupList[Index].fileSource;
                     string targetFile = backupJob.backupList[Index].fileTarget;
                     string saveType = backupJob.backupList[Index].type;
+                    int size = (int)new FileInfo(sourceFile).Length;
 
-                    //LogType.CallType();
-                    //StateLogtype.CallType();
+
                     //backupJob.MoveFileDirectory(sourceFile, targetFile, saveType);
 
                     Thread move = new Thread(new ThreadStart(() => backupJob.MoveFileDirectory(sourceFile, targetFile, saveType)));
                     move.Name = i.ToString();
+                    watch.Start();
                     move.Start();
+                    watch.Stop();
+                    LogType.CallType(name, sourceFile, targetFile, watch.ElapsedMilliseconds, size);
+                    watch.Reset();
+                    StateLogType.CallType(name, sourceFile, targetFile, size);
                     Thread.Sleep(6000);
                 }
                 backupJob.backupIndex.Clear(); //Clear the selected rows array at the end

@@ -9,10 +9,14 @@ namespace EasySaveGraphic
 {
     public class StateLogType
     {
-        public static void JSONType()
+        public static void JSONType(string name, string sourcePath, string targetPath, int size)
         {
             var stateLog = new StateInfo()  //JSON informations
             {
+                BackupName = name,
+                SourceFilePath = sourcePath,
+                TargetFilePath = targetPath,
+                TotalFileSize = size,
                 NbFilesLeftToDo = 0,
             };
 
@@ -58,10 +62,14 @@ namespace EasySaveGraphic
             }
         }
 
-        public static void XMLType()
+        public static void XMLType(string name, string sourcePath, string targetPath, int size)
         {
             var stateLog = new StateInfo()  //XML informations
             {
+                BackupName = name,
+                SourceFilePath = sourcePath,
+                TargetFilePath = targetPath,
+                TotalFileSize = size,
                 NbFilesLeftToDo = 0,
             };
             XDocument document = new XDocument
@@ -85,7 +93,7 @@ namespace EasySaveGraphic
             document.Save(path);
         }
 
-        public static void CallType()
+        public static void CallType(string name, string sourcePath, string targetPath, int size)
         {
             string settingsFile = @"C:/temp/settings.json";
             string jsonString = File.ReadAllText(settingsFile);
@@ -93,20 +101,20 @@ namespace EasySaveGraphic
             string choiceType = stateInfo.LogType;
             if (choiceType == "JSON")
             {
-                JSONType();
+                JSONType(name, sourcePath, targetPath, size);
             }
             else if (choiceType == "XML")
             {
-                XMLType();
+                XMLType(name, sourcePath, targetPath, size);
             }
         }
 
     }
     public class StateInfo
     {
-        public string BackupName => backupJob.backupList[backupJob.Index].name;
-        public string SourceFilePath => backupJob.backupList[backupJob.Index].fileSource;
-        public string TargetFilePath => backupJob.backupList[backupJob.Index].fileTarget;
+        public string BackupName { get; set; }
+        public string SourceFilePath { get; set; }
+        public string TargetFilePath { get; set; }
         public string Time
         {
             get
@@ -131,21 +139,8 @@ namespace EasySaveGraphic
                 }
             }
         }
-        public int TotalFileSize  //In octets
-        {
-            get
-            {
-                try
-                {
-                    int Size = (int)new FileInfo(SourceFilePath).Length;  //Return Size of the file
-                    return Size;
-                }
-                catch
-                {
-                    return 0;   //Can't return an other size than a file
-                }
-            }
-        }
+        public int TotalFileSize { get; set; }  //In octets
+
         public int NbFilesLeftToDo { get; set; }
         public double Progression => (double)Decimal.Divide(NbFilesLeftToDo, TotalFilesToCopy); //Tends from 1 to 0, 0 corresponds to finished processing
     }
