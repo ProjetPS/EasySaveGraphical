@@ -17,7 +17,6 @@ namespace EasySaveGraphic
                 SourceFilePath = sourcePath,
                 TargetFilePath = targetPath,
                 TotalFileSize = size,
-                NbFilesLeftToDo = 0,
             };
 
             var options = new JsonSerializerOptions
@@ -70,7 +69,6 @@ namespace EasySaveGraphic
                 SourceFilePath = sourcePath,
                 TargetFilePath = targetPath,
                 TotalFileSize = size,
-                NbFilesLeftToDo = 0,
             };
             XDocument document = new XDocument
     (
@@ -141,7 +139,7 @@ namespace EasySaveGraphic
         }
         public int TotalFileSize { get; set; }  //In octets
 
-        public int NbFilesLeftToDo { get; set; }
-        public double Progression => (double)Decimal.Divide(NbFilesLeftToDo, TotalFilesToCopy); //Tends from 1 to 0, 0 corresponds to finished processing
+        public double NbFilesLeftToDo => 100 - Progression;
+        public double Progression => 100;
     }
 }
