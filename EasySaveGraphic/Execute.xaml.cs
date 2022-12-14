@@ -92,6 +92,23 @@ namespace EasySaveGraphic
                     string saveType = backupJob.backupList[Index].type;
                     int size = (int)new FileInfo(sourceFile).Length;
 
+                    //Encrypt with Cryptosoft
+                    foreach (FileInfo file in files)
+                    {
+                        if (extensions.Contains(file.Extension))
+                        {
+                            Stopwatch swtoCrypt = Stopwatch.StartNew();
+                            //Encryt
+                            var fileToCrypt = file.FullName.Replace(sourceFile, targetFile);
+                            var p = new Process();
+                            p.StartInfo.FileName = @"......\CryptoSoft\CryptoSoft.exe";
+                            p.StartInfo.Arguments = $"{file} {fileToCrypt}";
+                            p.Start();
+                            swtoCrypt.Stop();
+                            //pour les logs 
+                            fileTransferTimeToCrypt = swtoCrypt.Elapsed.TotalMilliseconds;
+                        }
+                    }
                     //backupJob.MoveFileDirectory(sourceFile, targetFile, saveType);
 
                     Thread move = new Thread(new ThreadStart(() => MoveFileDirectory(sourceFile, targetFile, saveType)));
