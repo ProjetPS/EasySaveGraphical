@@ -10,10 +10,15 @@ namespace EasySaveGraphic
 {
     class LogType
     {
-        public static void JSONType()
+        public static void JSONType(string name, string sourcePath, string targetPath, double transfertTime, int size)
         {
             var Log = new LogInfo()  //JSON informations
             {
+                BackupName = name,
+                SourceFilePath = sourcePath,
+                TargetFilePath = targetPath,
+                FileTransfertTime = transfertTime,
+                FileSize = size,
             };
 
             var options = new JsonSerializerOptions
@@ -58,10 +63,15 @@ namespace EasySaveGraphic
             }
         }
 
-        public static void XMLType()
+        public static void XMLType(string name, string sourcePath, string targetPath, double transfertTime, int size)
         {
             var Log = new LogInfo()  //JSON informations
             {
+                BackupName = name,
+                SourceFilePath = sourcePath,
+                TargetFilePath = targetPath,
+                FileTransfertTime = transfertTime,
+                FileSize = size,
             };
             XDocument document = new XDocument
     (
@@ -82,7 +92,7 @@ namespace EasySaveGraphic
             document.Save(path);
         }
 
-        public static void CallType()
+        public static void CallType(string name, string sourcePath, string targetPath, double transfertTime, int size)
         {
             string settingsFile = @"C:/temp/settings.json";
             string jsonString = File.ReadAllText(settingsFile);
@@ -90,20 +100,20 @@ namespace EasySaveGraphic
             string choiceType = stateInfo.LogType;
             if (choiceType == "JSON")
             {
-                JSONType();
+                JSONType(name, sourcePath, targetPath, transfertTime, size);
             }
             else if (choiceType == "XML")
             {
-                XMLType();
+                XMLType(name, sourcePath, targetPath, transfertTime, size);
             }
         }
     }
 
     public class LogInfo
     {
-        public string BackupName => backupJob.backupList[backupJob.Index].name;
-        public string SourceFilePath => backupJob.backupList[backupJob.Index].fileSource;
-        public string TargetFilePath => backupJob.backupList[backupJob.Index].fileTarget;
+        public string BackupName { get; set; }
+        public string SourceFilePath { get; set; }
+        public string TargetFilePath { get; set; }
         public string DestPath = "";
         public string Time
         {
@@ -113,29 +123,9 @@ namespace EasySaveGraphic
                 return date.ToString();
             }
         }
-        public int FileSize  //In octets
-        {
-            get
-            {
-                try
-                {
-                    int Size = (int)new FileInfo(SourceFilePath).Length;  //Return Size of the file
-                    return Size;
-                }
-                catch
-                {
-                    return 0;   //Can't return an other size than a file
-                }
-            }
-        }
+        public int FileSize { get; set; } //In octets
 
-        public int FileTransfertTime
-        {
-            get
-            {
-                return 0;
-            }
-        }
+        public double FileTransfertTime { get; set; }
     }
 }
 
