@@ -108,7 +108,7 @@ namespace EasySaveGraphic
                     string sourceFile = backupJob.backupList[Index].fileSource;
                     string targetFile = backupJob.backupList[Index].fileTarget;
                     string saveType = backupJob.backupList[Index].type;
-                    int size = (int)new FileInfo(sourceFile).Length;
+                    int size = (int)new FileInfo(sourceFile).Length / 100; //convert size of file in ko
 
                     if (size <= limitSizeFile) //check if size of file isn't superior of the limit
                     {
@@ -117,7 +117,7 @@ namespace EasySaveGraphic
                     watch.Start(); //start counting
                     move.Start();
                     watch.Stop(); //stop counting
-                    LogType.CallType(name, sourceFile, targetFile, watch.ElapsedMilliseconds, size); //Create Log
+                    LogType.CallType(name, sourceFile, targetFile, watch.Elapsed.TotalMilliseconds, size); //Create Log
                     watch.Reset(); //free memory
                     StateLogType.CallType(name, sourceFile, targetFile, size); //Create StateLog
                     }
