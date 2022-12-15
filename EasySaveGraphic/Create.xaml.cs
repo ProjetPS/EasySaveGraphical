@@ -36,8 +36,12 @@ namespace EasySaveGraphic
 
         private void ChangetoFR()
         {
-            CreateTitle.Content = "Créer un travail de sauvegarde";
-            Create_btn.Content = "Créer";
+            CreateTitle.Content = "Créer une sauvegarde";
+            name.Content = "Nom : ";
+            sourceFile.Content = "Fichier source : ";
+            targetFile.Content = "Fichier cible : ";
+            type.Content = "Type : ";
+            CreateButton.Content = "Créer";
         }
 
         private void CreateBackupJob(object sender, RoutedEventArgs e)
