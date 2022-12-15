@@ -36,8 +36,15 @@ namespace EasySaveGraphic
 
         private void ChangetoFR()
         {
-            CreateTitle.Content = "Créer un travail de sauvegarde";
-            Create_btn.Content = "Créer";
+            CreateTitle.Content = "Créer une sauvegarde";
+            name.Content = "Nom : ";
+            sourceFile.Content = "Fichier source : ";
+            targetFile.Content = "Fichier cible : ";
+            type.Content = "Type : ";
+            CreateButton.Content = "Créer";
+            opt1.Content = "Fichier";
+            opt2.Content = "Répertoire";
+
         }
 
         private void CreateBackupJob(object sender, RoutedEventArgs e)
@@ -47,10 +54,24 @@ namespace EasySaveGraphic
             string fileTarget = backupJobTarget.Text;
             string type = backupJobType.SelectedItem.ToString();
 
-            backupJob save = new backupJob(name, fileSource, fileTarget, type);
-            backupJob.Open(backupJob.filePath);
-            backupJob.backupList.Add(save);
-            backupJob.Save(backupJob.backupList, backupJob.filePath);
+            if (name.Length > 0 && fileSource.Length > 0 && fileTarget.Length > 0 && type.Length > 0)
+            {
+                backupJob save = new backupJob(name, fileSource, fileTarget, type);
+                backupJob.Open(backupJob.filePath);
+                backupJob.backupList.Add(save);
+                backupJob.Save(backupJob.backupList, backupJob.filePath);
+            }
+            else
+            {
+                if (isLangFR)
+                {
+                    MessageBox.Show("Il manque des informations à remplir.", "Attention", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
+                {
+                    MessageBox.Show("Information Missing.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
         }
 
 
