@@ -7,6 +7,8 @@ using System.Diagnostics;
 using System.Threading;
 using System.ComponentModel;
 using System.IO;
+using System.Text.Json;
+using System.Collections.Generic;
 
 namespace EasySaveGraphic
 {
@@ -21,6 +23,10 @@ namespace EasySaveGraphic
         private bool isLangFR = false;
 
         BackgroundWorker worker = new BackgroundWorker();
+
+        public bool pause = false;
+
+        public bool stop = false;
 
 
         public Execute(bool isFR)
@@ -67,21 +73,34 @@ namespace EasySaveGraphic
         private void ExecuteSave(object sender, DoWorkEventArgs e)
         {
             bool canExecute = false;
-            Process[] processes = Process.GetProcessesByName("notepad"); // Is jobSoftware open ?
+            string settingsFile = @"C:/temp/settings.json";
+            string jsonString = File.ReadAllText(settingsFile);
+            Config stateInfo = JsonSerializer.Deserialize<Config>(jsonString)!;
+            string jobSoftware = stateInfo.JobSoftware;
+            int limitSizeFile = stateInfo.LimitSize;
+            Process[] processes = Process.GetProcessesByName(jobSoftware); // Is jobSoftware open ?
 
             if (processes.Length == 0)
             {
                 canExecute = true;
             }
-            else if (processes.Length == 1)
+            else
             {
-                canExecute = false;
+                if (isLangFR)
+                {
+                    MessageBox.Show("Le logiciel métier est en cours d'exécution.", "Attention", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
+                {
+                    MessageBox.Show("JobSoftware is running.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
 
             // If jobSoftware close, then we can execute our save
             if (canExecute == true)
             {
                 var watch = new Stopwatch();
+
                 Thread[] moves = new Thread[backupJob.backupIndex.Count];
                 for (int i = 0; i < moves.Length; i++)
                 {
@@ -90,35 +109,35 @@ namespace EasySaveGraphic
                     string sourceFile = backupJob.backupList[Index].fileSource;
                     string targetFile = backupJob.backupList[Index].fileTarget;
                     string saveType = backupJob.backupList[Index].type;
-                    int size = (int)new FileInfo(sourceFile).Length;
+                    //int size = (int)new FileInfo(sourceFile).Length;
 
-                    //Encrypt with Cryptosoft
-                    foreach (FileInfo file in files)
-                    {
-                        if (extensions.Contains(file.Extension))
-                        {
-                            Stopwatch swtoCrypt = Stopwatch.StartNew();
-                            //Encryt
-                            var fileToCrypt = file.FullName.Replace(sourceFile, targetFile);
-                            var p = new Process();
-                            p.StartInfo.FileName = @"......\CryptoSoft\CryptoSoft.exe";
-                            p.StartInfo.Arguments = $"{file} {fileToCrypt}";
-                            p.Start();
-                            swtoCrypt.Stop();
-                            //pour les logs 
-                            fileTransferTimeToCrypt = swtoCrypt.Elapsed.TotalMilliseconds;
-                        }
-                    }
+
                     //backupJob.MoveFileDirectory(sourceFile, targetFile, saveType);
-
-                    Thread move = new Thread(new ThreadStart(() => MoveFileDirectory(sourceFile, targetFile, saveType)));
+                    //int size = (int)new FileInfo(sourceFile).Length / 1000; //convert size of file in ko
+                    DirectoryInfo info = new DirectoryInfo(sourceFile);
+                    int size = (int)info.EnumerateFiles().Sum(file => file.Length);
+                    size = size / 1024;
+                    Thread move = new Thread(new ThreadStart(() => MoveFileDirectory(sourceFile, targetFile, saveType,limitSizeFile,stateInfo.Extensions.ToArray())));
                     move.Name = i.ToString();
-                    watch.Start();
+                    watch.Start(); //start counting
                     move.Start();
-                    LogType.CallType(name, sourceFile, targetFile, watch.ElapsedMilliseconds, size);
-                    watch.Reset();
-                    StateLogType.CallType(name, sourceFile, targetFile, size);
-                    //Thread.Sleep(6000);
+                    watch.Stop(); //stop counting
+                    LogType.CallType(name, sourceFile, targetFile, watch.Elapsed.TotalMilliseconds, size); //Create Log
+                    watch.Reset(); //free memory
+                    StateLogType.CallType(name, sourceFile, targetFile, size); //Create StateLog
+                    //}
+                    //else
+                    //{
+                    //    if (isLangFR)
+                    //    {
+                    //        MessageBox.Show("Votre fichier dépasse la taille limite fixée dans les paramètres.", "Attention", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    //    }
+                    //    else
+                    //    {
+                    //        MessageBox.Show("Your file exceeds the size limit defined in the settings.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    //    }
+                    //}
+
                 }
                 backupJob.backupIndex.Clear(); //Clear the selected rows array at the end
             }
@@ -182,30 +201,100 @@ namespace EasySaveGraphic
         }
 
 
-        public void MoveFileDirectory(string sourceFile, string targetFile, string saveType) //Method that move a file/directory to the right place
+        public void MoveFileDirectory(string sourceFile, string targetFile, string saveType,int limit,string[] exts) //Method that move a file/directory to the right place
         {
+                byte secret = 255;
             if (saveType == "System.Windows.Controls.ComboBoxItem : File" || saveType == "System.Windows.Controls.ComboBoxItem : Fichier") //If user wants to move a file
             {
-                FileStream fsout = new FileStream(targetFile, FileMode.Create);
-                FileStream fsin = new FileStream(sourceFile, FileMode.Open);
-                byte[] bt = new byte[1048756];
-                int readByte;
-
-                while ((readByte = fsin.Read(bt, 0, bt.Length)) > 0)  //Read progression
+                if (((new FileInfo(sourceFile)).Length / 1024) >= limit) return;
+                string destination = targetFile + "/" + (new FileInfo(sourceFile)).Name;
+                var process = new Process
                 {
-                    fsout.Write(bt, 0, readByte);
-                    worker.ReportProgress((int)(fsin.Position * fsin.Length));
-                }
-                fsin.Close();
-                File.Delete(sourceFile); //Delete source file
-                fsout.Close();
+                    StartInfo = new ProcessStartInfo
+                    {
+                        FileName = @"./cryptosoft/CryptoSoft.exe",
+                        Arguments = "--source " + sourceFile + " --destination " + destination + " --secret " + secret,
+                    }
+                };
+                process.Start();
+                //FileStream fsout = new FileStream(targetFile, FileMode.Create);
+                //FileStream fsin = new FileStream(sourceFile, FileMode.Open);
+                //byte[] bt = new byte[1048756];
+                //int readByte;
+
+                //while ((readByte = fsin.Read(bt, 0, bt.Length)) > 0)  //Read progression
+                //{
+                //    while (pause)
+                //    {
+                //        Thread.Sleep(1000);
+
+                //        if (stop)
+                //        {
+                //            fsout.Close();
+                //            File.Delete(targetFile);
+                //            MainPage goBack = new MainPage(true);
+                //        }
+                //    }
+
+                //    if (stop)
+                //    {
+                //        fsin.Close();
+                //        fsout.Close();
+                //        File.Delete(targetFile);
+                //        return;
+                //    }
+                //    fsout.Write(bt, 0, readByte);
+                //    worker.ReportProgress((int)(fsin.Position * 100 / fsin.Length));
+                //}
+                //fsin.Close();
+                //File.Delete(sourceFile); //Delete source file
+                //fsout.Close();
             }
             else if (saveType == "System.Windows.Controls.ComboBoxItem : Directory" || saveType == "System.Windows.Controls.ComboBoxItem : Répertoire") //If user wants to move a directory
             {
-                System.IO.Directory.Move(sourceFile, targetFile);
+                string[] files =Directory.EnumerateFiles(sourceFile, "*.*", SearchOption.AllDirectories).ToArray();
+                Array.Sort(files,delegate (string s1,string s2) {
+                    bool s1t = exts.Contains((new FileInfo(s1)).Extension);
+                    bool s2t = exts.Contains((new FileInfo(s2)).Extension);
+                    
+                    if (s1t && !s2t) return -1;
+                    if (s2t && !s1t) return 1;
+                    else return 0;
+                });
+                foreach (string file in files)
+                {
+                    if (((new FileInfo(file)).Length / 1024) >= limit) continue;
+                    string destination = file.Replace(sourceFile, targetFile);
+                    var process = new Process
+                    {
+                        StartInfo = new ProcessStartInfo
+                        {
+                            FileName = @"./cryptosoft/CryptoSoft.exe",
+                            Arguments = "--source \"" + file + "\" --destination \"" + destination + "\" --secret " + secret,
+                        }
+                     };
+                    process.Start();
+                }
             }
         }
+        public static int prio(string s1, string s2)
+        {
+            return 0;
+        }
 
+        private void Resume_Click(object sender, RoutedEventArgs e)
+        {
+            pause = false;
+        }
 
+        private void Pause_Click(object sender, RoutedEventArgs e)
+        {
+            pause = true;
+        }
+
+        private void Stop_Click(object sender, RoutedEventArgs e)
+        {
+            stop = true;
+        }
     }
 }
