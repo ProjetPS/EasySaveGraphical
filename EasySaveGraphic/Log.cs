@@ -10,7 +10,7 @@ namespace EasySaveGraphic
 {
     class LogType
     {
-        public static void JSONType(string name, string sourcePath, string targetPath, long transfertTime, int size)
+        public static void JSONType(string name, string sourcePath, string targetPath, double transfertTime, int size)
         {
             var Log = new LogInfo()  //JSON informations
             {
@@ -63,7 +63,7 @@ namespace EasySaveGraphic
             }
         }
 
-        public static void XMLType(string name, string sourcePath, string targetPath, long transfertTime, int size)
+        public static void XMLType(string name, string sourcePath, string targetPath, double transfertTime, int size)
         {
             var Log = new LogInfo()  //JSON informations
             {
@@ -92,7 +92,7 @@ namespace EasySaveGraphic
             document.Save(path);
         }
 
-        public static void CallType(string name, string sourcePath, string targetPath, long transfertTime, int size)
+        public static void CallType(string name, string sourcePath, string targetPath, double transfertTime, int size)
         {
             string settingsFile = @"C:/temp/settings.json";
             string jsonString = File.ReadAllText(settingsFile);
@@ -125,7 +125,7 @@ namespace EasySaveGraphic
         }
         public int FileSize { get; set; } //In octets
 
-        public long FileTransfertTime { get; set; }
+        public double FileTransfertTime { get; set; }
     }
 }
 
