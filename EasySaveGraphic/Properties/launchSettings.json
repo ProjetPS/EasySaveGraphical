@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "EasySaveGraphic": {
+      "commandName": "Project"
+    },
+    "EasySave_Client": {
+      "commandName": "Project"
+    }
+  }
+}

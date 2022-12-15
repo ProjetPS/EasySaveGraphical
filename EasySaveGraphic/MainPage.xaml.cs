@@ -14,7 +14,9 @@ using System.Windows.Shapes;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 using System.Threading.Tasks;
+
 
 namespace EasySaveGraphic
 {
@@ -174,14 +176,16 @@ namespace EasySaveGraphic
 
         private void ClientRemote_Click(object sender, RoutedEventArgs e)
         {
-            StartServerSocketAsync();
+            Thread socket = new Thread(new ThreadStart(MainPage.StartServerSocketAsync));
+            socket.Start();
+
             Process client = new Process();
-            client.StartInfo.FileName = @"..\..\..\..\EasySave_Client\bin\Release\netcoreapp3.1\EasySave_Client.exe";
+            client.StartInfo.FileName = @"..\..\..\..\EasySaveClient\bin\Release\netcoreapp3.1\EasySaveClient.exe";
             client.Start();
             
         }
 
-        private static async Task StartServerSocketAsync()
+        private static async void StartServerSocketAsync()
         {
             IPAddress ipAddr = IPAddress.Parse("127.0.0.1");
             IPEndPoint ipEndPoint = new IPEndPoint(ipAddr, 11_000);
@@ -195,24 +199,18 @@ namespace EasySaveGraphic
             listener.Listen(100);
 
             var handler = await listener.AcceptAsync();
-            while (true)
+            
+            for (int i = 0; i < 100; i++)
             {
                 // Receive message.
-                var buffer = new byte[1_024];
-                var received = await handler.ReceiveAsync(buffer, SocketFlags.None);
-                var response = Encoding.UTF8.GetString(buffer, 0, received);
+                //var buffer = new byte[1_024];
+                //var received = await handler.ReceiveAsync(buffer, SocketFlags.None);
+                //var response = Encoding.UTF8.GetString(buffer, 0, received);
 
-                var eom = "<|EOM|>";
-                if (response.IndexOf(eom) > -1 /* is end of message */)
-                {
-                    Console.WriteLine(
-                        $"Socket server received message: \"{response.Replace(eom, "")}\"");
-
-                    var ackMessage = "<|ACK|>"; // "<|ACK|>"
-                    var echoBytes = Encoding.UTF8.GetBytes(ackMessage);
-                    await handler.SendAsync(echoBytes, 0);
-                    break;
-                }
+                var ackMessage = i; // "<|ACK|>"
+                var echoBytes = Encoding.UTF8.GetBytes(ackMessage.ToString());
+                await handler.SendAsync(echoBytes, 0);
+                Thread.Sleep(1000);
             }
         }
     }
