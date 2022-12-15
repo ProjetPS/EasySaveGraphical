@@ -42,6 +42,9 @@ namespace EasySaveGraphic
             targetFile.Content = "Fichier cible : ";
             type.Content = "Type : ";
             CreateButton.Content = "Créer";
+            opt1.Content = "Fichier";
+            opt2.Content = "Répertoire";
+
         }
 
         private void CreateBackupJob(object sender, RoutedEventArgs e)
